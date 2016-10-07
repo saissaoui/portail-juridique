@@ -22,7 +22,7 @@ public class AuthenticationTest {
 
         //GIVEN
         String login = "s-aissaoui";
-        String password = "goodpass";
+        String password = "good_pass";
         Mockito.when(authenticationService.authenticate(login, password)).thenReturn(new User());
 
         //WHEN
@@ -38,7 +38,7 @@ public class AuthenticationTest {
 
         //GIVEN
         String login = "s-aissaoui";
-        String password = "wrongpass";
+        String password = "wrong_pass";
         Mockito.when(authenticationService.authenticate(login, password)).thenReturn(null);
 
         //WHEN
