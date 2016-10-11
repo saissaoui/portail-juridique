@@ -1,4 +1,4 @@
-package fr.artefrance.daj.test.domain.statement;
+package fr.artefrance.daj.domain.statement;
 
 import java.time.LocalTime;
 

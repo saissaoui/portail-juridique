@@ -1,4 +1,4 @@
-package fr.artefrance.daj.test.domain.statement;
+package fr.artefrance.daj.domain.statement;
 
 public class RecordSupport {
     private String producerName;
