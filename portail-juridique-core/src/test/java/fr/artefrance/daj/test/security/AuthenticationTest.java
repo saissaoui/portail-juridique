@@ -1,7 +1,7 @@
 package fr.artefrance.daj.test.security;
 
 
-import fr.artefrance.daj.test.domain.security.User;
+import fr.artefrance.daj.domain.security.User;
 import fr.artefrance.daj.service.security.AuthenticationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
