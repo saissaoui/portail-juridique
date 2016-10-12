@@ -1,10 +1,27 @@
-package fr.artefrance.daj.domain.statement;
+package fr.artefrance.daj.domain.statement.artwork;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "RECORD_SUPPORT")
 public class RecordSupport {
+
+    @Id
+    @Column(name = "record_support_id")
+    private Long id;
+
+    @Column(name = "producer_name")
     private String producerName;
+
+    @Column(name = "support_label")
     private String supportLabel;
+
+    @Column(name = "support_number")
     private String supportNumber;
-    private RecodrSupportIdentifier supportIdentifier;
+
+    @Column(name = "support_identifier")
+    @Enumerated(EnumType.STRING)
+    private RecordSupportIdentifier supportIdentifier;
 
     public String getProducerName() {
         return producerName;
@@ -30,11 +47,11 @@ public class RecordSupport {
         this.supportNumber = supportNumber;
     }
 
-    public RecodrSupportIdentifier getSupportIdentifier() {
+    public RecordSupportIdentifier getSupportIdentifier() {
         return supportIdentifier;
     }
 
-    public void setSupportIdentifier(RecodrSupportIdentifier supportIdentifier) {
+    public void setSupportIdentifier(RecordSupportIdentifier supportIdentifier) {
         this.supportIdentifier = supportIdentifier;
     }
 }

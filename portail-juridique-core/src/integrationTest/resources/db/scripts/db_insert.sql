@@ -1,4 +1,2 @@
-INSERT INTO GRANTEE_ROLE VALUES ('PROD', 'Producteur');
-INSERT INTO GRANTEE_ROLE VALUES ('COMP', 'Compositeur');
-INSERT INTO GRANTEE_ROLE VALUES ('DIST', 'Distributeur');
-INSERT INTO GRANTEE_ROLE VALUES ('GRAP', 'Graphiste');
+-- ARTWORK
+insert INTO ART_GENRE VALUES ('CMF','Court métrage de fiction');

@@ -1,20 +1,20 @@
-package fr.artefrance.daj.domain.statement;
+package fr.artefrance.daj.domain.rightholder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "GRANTEE_ROLE")
 @Entity
-public class GranteeRole {
+@Table(name = "RIGHT_HOLDER_ROLE")
+public class RightHolderRole {
 
     @Id
-    @Column
-    private String roleLabel;
-
-    @Column
+    @Column(name = "role_code")
     private String roleCode;
+
+    @Column(name = "role_label")
+    private String roleLabel;
 
     public String getRoleLabel() {
         return roleLabel;
@@ -34,7 +34,7 @@ public class GranteeRole {
 
     @Override
     public String toString() {
-        return "GranteeRole{" +
+        return "RightHolderRole{" +
                 "roleLabel='" + roleLabel + '\'' +
                 ", roleCode='" + roleCode + '\'' +
                 '}';

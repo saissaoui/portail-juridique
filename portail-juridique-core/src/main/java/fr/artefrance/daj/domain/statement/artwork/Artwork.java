@@ -1,19 +1,46 @@
-package fr.artefrance.daj.domain.statement;
+package fr.artefrance.daj.domain.statement.artwork;
 
 
+import fr.artefrance.daj.domain.statement.ArtGenre;
+
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+
+@Entity
+@Table(name = "ARTWORK")
 public class Artwork {
 
+    @Id
+    @Column(name = "artwork_id")
+    private Long id;
+
+    @Column(name = "title")
     private String title;
-    private ArtworkGenre genre;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_code")
+    private ArtGenre genre;
+
+    @Column(name = "music_type")
+    @Enumerated(EnumType.STRING)
     private ArtworkMusicType musicType;
+
+    @OneToMany
+    @JoinColumn(name = "artwork_id")
     private List<ArtworkTimeCode> timeCodes;
-    private List<Grantee> grantees;
+
+    @OneToMany
+    @JoinColumn(name = "artwork_id")
+    private List<ArtworkRightHolder> rightHolders;
+
+    @OneToOne
+    @JoinColumn(name = "record_support_id")
     private RecordSupport recordSupport;
 
-    public Artwork(String title, ArtworkGenre genre ) {
+
+    public Artwork(String title, ArtGenre genre) {
         Objects.requireNonNull(title, "Artwork.title is required");
         Objects.requireNonNull(genre, "Artwork.genre is required");
         this.title = title;
@@ -21,11 +48,19 @@ public class Artwork {
 
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
 
-    public ArtworkGenre getGenre() {
+    public ArtGenre getGenre() {
         return genre;
     }
 
@@ -45,12 +80,12 @@ public class Artwork {
         this.timeCodes = timeCodes;
     }
 
-    public List<Grantee> getGrantees() {
-        return grantees;
+    public List<ArtworkRightHolder> getRightHolders() {
+        return rightHolders;
     }
 
-    public void setGrantees(List<Grantee> grantees) {
-        this.grantees = grantees;
+    public void setRightHolders(List<ArtworkRightHolder> rightHolders) {
+        this.rightHolders = rightHolders;
     }
 
     public RecordSupport getRecordSupport() {
@@ -60,4 +95,5 @@ public class Artwork {
     public void setRecordSupport(RecordSupport recordSupport) {
         this.recordSupport = recordSupport;
     }
+
 }
