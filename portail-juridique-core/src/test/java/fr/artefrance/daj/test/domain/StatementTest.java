@@ -1,9 +1,7 @@
 package fr.artefrance.daj.test.domain;
 
 
-import fr.artefrance.daj.domain.statement.Artwork;
-import fr.artefrance.daj.domain.statement.EmissionDTO;
-import fr.artefrance.daj.domain.statement.Grantee;
+import fr.artefrance.daj.domain.statement.Program;
 import fr.artefrance.daj.domain.statement.Statement;
 import fr.artefrance.daj.test.factory.ArtworkFactory;
 import fr.artefrance.daj.test.factory.GranteeFactory;
@@ -11,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import static fr.artefrance.daj.domain.statement.StatementStatus.PENDING;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,8 +29,8 @@ public class StatementTest {
     public void statement_can_be_recorded() {
         //GIVEN
         statement.setStatus(PENDING);
-        statement.setEmissionDTO(new EmissionDTO());
-        statement.setLastActivityDate(LocalDate.now());
+        statement.setProgram(new Program());
+        statement.setLastActivityDate(new Date());
         //WHEN
         Boolean valid = statement.canBeRecorded();
         //THEN
@@ -42,8 +40,8 @@ public class StatementTest {
     @Test
     public void statement_cannot_be_recorded_without_status() {
         //GIVEN
-        statement.setEmissionDTO(new EmissionDTO());
-        statement.setLastActivityDate(LocalDate.now());
+        statement.setProgram(new Program());
+        statement.setLastActivityDate(new Date());
         //WHEN
         Boolean valid = statement.canBeRecorded();
         //THEN
@@ -54,7 +52,7 @@ public class StatementTest {
     public void statement_cannot_be_recorded_without_emissiondto() {
         //GIVEN
         statement.setStatus(PENDING);
-        statement.setLastActivityDate(LocalDate.now());
+        statement.setLastActivityDate(new Date());
         //WHEN
         Boolean valid = statement.canBeRecorded();
         //THEN
@@ -65,7 +63,7 @@ public class StatementTest {
     public void statement_cannot_be_recorded_without_lastActivityDate() {
         //GIVEN
         statement.setStatus(PENDING);
-        statement.setEmissionDTO(new EmissionDTO());
+        statement.setProgram(new Program());
         //WHEN
         Boolean valid = statement.canBeRecorded();
         //THEN
@@ -76,9 +74,9 @@ public class StatementTest {
     public void statement_can_be_validated_without_artworks() {
         //GIVEN
         statement.setStatus(PENDING);
-        statement.setEmissionDTO(new EmissionDTO());
-        statement.setLastActivityDate(LocalDate.now());
-        statement.setGrantees(GranteeFactory.createTwoGrantee());
+        statement.setProgram(new Program());
+        statement.setLastActivityDate(new Date());
+        statement.setStatementRightHolders(GranteeFactory.createTwoGrantee());
         statement.setHasNoArtworks(true);
         statement.setArtworks(null);
         //WHEN
@@ -91,9 +89,9 @@ public class StatementTest {
     public void statement_can_be_validated_with_artworks() {
         //GIVEN
         statement.setStatus(PENDING);
-        statement.setEmissionDTO(new EmissionDTO());
-        statement.setLastActivityDate(LocalDate.now());
-        statement.setGrantees(GranteeFactory.createTwoGrantee());
+        statement.setProgram(new Program());
+        statement.setLastActivityDate(new Date());
+        statement.setStatementRightHolders(GranteeFactory.createTwoGrantee());
         statement.setHasNoArtworks(false);
         statement.setArtworks(Arrays.asList(ArtworkFactory.createArtwork()));
         //WHEN
@@ -106,9 +104,9 @@ public class StatementTest {
     public void statement_cannot_be_validated_without_a_minimum_of_two_grantees() {
         //GIVEN
         statement.setStatus(PENDING);
-        statement.setEmissionDTO(new EmissionDTO());
-        statement.setLastActivityDate(LocalDate.now());
-        statement.setGrantees(Arrays.asList(GranteeFactory.createGrantee()));
+        statement.setProgram(new Program());
+        statement.setLastActivityDate(new Date());
+        statement.setStatementRightHolders(Arrays.asList(GranteeFactory.createGrantee()));
         statement.setHasNoArtworks(false);
         statement.setArtworks(Arrays.asList(ArtworkFactory.createArtwork()));
         //WHEN
@@ -121,9 +119,9 @@ public class StatementTest {
     public void statement_cannot_be_validated_without_artworks_if_hasnoartworks_unchecked() {
         //GIVEN
         statement.setStatus(PENDING);
-        statement.setEmissionDTO(new EmissionDTO());
-        statement.setLastActivityDate(LocalDate.now());
-        statement.setGrantees(GranteeFactory.createTwoGrantee());
+        statement.setProgram(new Program());
+        statement.setLastActivityDate(new Date());
+        statement.setStatementRightHolders(GranteeFactory.createTwoGrantee());
         statement.setHasNoArtworks(false);
         //WHEN
         Boolean valid = statement.canBeValidated();

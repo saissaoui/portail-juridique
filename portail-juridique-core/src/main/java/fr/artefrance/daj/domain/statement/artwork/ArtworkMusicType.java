@@ -1,4 +1,4 @@
-package fr.artefrance.daj.domain.statement;
+package fr.artefrance.daj.domain.statement.artwork;
 
 public enum ArtworkMusicType {
     /**

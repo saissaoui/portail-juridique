@@ -1,21 +1,57 @@
 package fr.artefrance.daj.domain.statement;
 
+import javax.persistence.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+@Entity
+@Table(name = "PROGRAM")
+public class Program {
 
-public class EmissionDTO {
+    @Id
+    @Column(name = "program_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
+    @Column(name = "original_title")
     private String originalTitle;
+
+    @Column(name = "original_subtitle")
     private String originalSubTitle;
+
+    @Column(name = "contractual_title")
     private String contractualTitle;
+
+    @Column(name = "contractual_subtitle")
     private String contractualSubTitle;
-    private LocalDate productionYear;
+
+    @Column(name = "production_year")
+    private int productionYear;
+
+    @Column(name = "episode_number")
     private int episodeNumber;
-    private LocalTime duration;
+
+    @Column(name = "duration")
+    private Long duration;
+
+    @Column(name = "arte_em_number")
     private String arteEmNumber;
-    private ArtworkGenre genre;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "genre_code", insertable = false, updatable = false)
+    private ArtGenre genre;
+
+    @Column(name = "isan")
     private String isan;
+    @Transient
+    // @OneToOne(mappedBy = "program")
+    private Statement statement;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getOriginalTitle() {
         return originalTitle;
@@ -49,11 +85,11 @@ public class EmissionDTO {
         this.contractualSubTitle = contractualSubTitle;
     }
 
-    public LocalDate getProductionYear() {
+    public int getProductionYear() {
         return productionYear;
     }
 
-    public void setProductionYear(LocalDate productionYear) {
+    public void setProductionYear(int productionYear) {
         this.productionYear = productionYear;
     }
 
@@ -65,11 +101,11 @@ public class EmissionDTO {
         this.episodeNumber = episodeNumber;
     }
 
-    public LocalTime getDuration() {
+    public Long getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalTime duration) {
+    public void setDuration(Long duration) {
         this.duration = duration;
     }
 
@@ -81,11 +117,11 @@ public class EmissionDTO {
         this.arteEmNumber = arteEmNumber;
     }
 
-    public ArtworkGenre getGenre() {
+    public ArtGenre getGenre() {
         return genre;
     }
 
-    public void setGenre(ArtworkGenre genre) {
+    public void setGenre(ArtGenre genre) {
         this.genre = genre;
     }
 
@@ -95,5 +131,13 @@ public class EmissionDTO {
 
     public void setIsan(String isan) {
         this.isan = isan;
+    }
+
+    public Statement getStatement() {
+        return statement;
+    }
+
+    public void setStatement(Statement statement) {
+        this.statement = statement;
     }
 }

@@ -66,11 +66,11 @@
     </dependencies>
 
     <build>
-        <testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-            </testResource>
-        </testResources>
+        <!--<testResources>-->
+            <!--<testResource>-->
+                <!--<directory>src/test/resources</directory>-->
+            <!--</testResource>-->
+        <!--</testResources>-->
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -79,7 +79,7 @@
                 <executions>
                     <execution>
                         <id>integrationTest-sources</id>
-                        <phase>process-test-sources</phase>
+                        <phase>generate-test-sources</phase>
                         <goals>
                             <goal>add-test-source</goal>
                         </goals>
@@ -91,7 +91,7 @@
                     </execution>
                     <execution>
                         <id>integrationTest-resources</id>
-                        <phase>process-resources</phase>
+                        <phase>generate-test-resources</phase>
                         <goals>
                             <goal>add-test-resource</goal>
                         </goals>
@@ -111,19 +111,26 @@
                 <version>2.19.1</version>
                 <configuration>
                     <excludes>
-                        <exclude>src/integrationTest/**</exclude>
+                        <exclude>**/integrationTest/**.java</exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.19.1</version>
                 <executions>
                     <execution>
-                        <id>Integration Tests</id>
-                        <phase>integration-test</phase>
                         <goals>
-                            <goal>test</goal>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
                         </goals>
                         <configuration>
+                            <excludes>
+                                <exclude>**/test/**.java</exclude>
+                            </excludes>
                             <includes>
-                                <include>src/integrationTest/**</include>
+                                <include>**/integrationTest/**.java</include>
                             </includes>
                         </configuration>
                     </execution>

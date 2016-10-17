@@ -1,26 +1,53 @@
 package fr.artefrance.daj.domain.statement;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import fr.artefrance.daj.domain.statement.artwork.Artwork;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "STATEMENT")
 public class Statement {
 
-    private String title;
+    @Id
+    @Column(name = "statement_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
+    @Enumerated(EnumType.STRING)
     private StatementStatus status;
-    private EmissionDTO emissionDTO;
-    private LocalDate lastActivityDate;
-    private List<Grantee> grantees;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "program_id")
+    private Program program;
+
+    @Column(name = "last_activity_date")
+    @Temporal( TemporalType.DATE )
+    private Date lastActivityDate;
+
+    @OneToMany
+    @JoinColumn(name = "statement_id")
+    private List<StatementRightHolder> statementRightHolders;
+
+    @OneToMany
+    @JoinColumn(name = "statement_id")
     private List<Artwork> artworks;
+
+    @Column(name = "has_no_artworks")
     private Boolean hasNoArtworks;
 
-    public String getTitle() {
-        return title;
+    @Column(name = "producer_owner_id")
+    private Long producerOwnerId;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public StatementStatus getStatus() {
@@ -31,28 +58,28 @@ public class Statement {
         this.status = status;
     }
 
-    public EmissionDTO getEmissionDTO() {
-        return emissionDTO;
+    public Program getProgram() {
+        return program;
     }
 
-    public void setEmissionDTO(EmissionDTO emissionDTO) {
-        this.emissionDTO = emissionDTO;
+    public void setProgram(Program program) {
+        this.program = program;
     }
 
-    public LocalDate getLastActivityDate() {
+    public Date getLastActivityDate() {
         return lastActivityDate;
     }
 
-    public void setLastActivityDate(LocalDate lastActivityDate) {
+    public void setLastActivityDate(Date lastActivityDate) {
         this.lastActivityDate = lastActivityDate;
     }
 
-    public List<Grantee> getGrantees() {
-        return grantees;
+    public List<StatementRightHolder> getStatementRightHolders() {
+        return statementRightHolders;
     }
 
-    public void setGrantees(List<Grantee> grantees) {
-        this.grantees = grantees;
+    public void setStatementRightHolders(List<StatementRightHolder> statementRightHolders) {
+        this.statementRightHolders = statementRightHolders;
     }
 
     public List<Artwork> getArtworks() {
@@ -71,13 +98,38 @@ public class Statement {
         this.hasNoArtworks = hasNoArtworks;
     }
 
-    public Boolean canBeRecorded() {
-        return lastActivityDate != null && status != null && emissionDTO != null;
+    public Long getProducerOwnerId() {
+        return producerOwnerId;
     }
+
+    public void setProducerOwnerId(Long producerOwnerId) {
+        this.producerOwnerId = producerOwnerId;
+    }
+
+    public Boolean canBeRecorded() {
+        return lastActivityDate != null && status != null && program != null;
+    }
+
+
 
     public Boolean canBeValidated() {
 
-        return canBeRecorded() && grantees != null && !grantees.isEmpty() && grantees.size() > 1 && (hasNoArtworks ||
-                !hasNoArtworks && artworks != null && !artworks.isEmpty());
+        return canBeRecorded() && statementRightHolders != null && !statementRightHolders
+                .isEmpty() && statementRightHolders.size() > 1 && (hasNoArtworks || artworks != null && !artworks
+                .isEmpty());
+    }
+
+    @Override
+    public String toString() {
+        return "Statement{" +
+                "id=" + id +
+                ", status=" + status +
+                ", program=" + program +
+                ", lastActivityDate=" + lastActivityDate +
+                ", statementRightHolders=" + statementRightHolders +
+                ", artworks=" + artworks +
+                ", hasNoArtworks=" + hasNoArtworks +
+                ", producerOwnerId=" + producerOwnerId +
+                '}';
     }
 }
