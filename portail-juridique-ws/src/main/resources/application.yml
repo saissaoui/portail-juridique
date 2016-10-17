@@ -1,0 +1,4 @@
+portail-juridique:
+  sophia:
+    web-service-url: http://localhost:8080
+    producer-programs-service: /get_producer_programs

@@ -26,6 +26,14 @@
     </properties>
 
     <dependencies>
+
+        <!-- Apache Commons Validator -->
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
         <!-- spring-boot-validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,14 +71,23 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.7</version>
+        </dependency>
+
+        <!-- slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+
     </dependencies>
 
     <build>
-        <!--<testResources>-->
-            <!--<testResource>-->
-                <!--<directory>src/test/resources</directory>-->
-            <!--</testResource>-->
-        <!--</testResources>-->
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
