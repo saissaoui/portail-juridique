@@ -2,18 +2,21 @@ package fr.artefrance.daj.domain.statement.artwork;
 
 
 import fr.artefrance.daj.domain.statement.ArtGenre;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
-
+/**
+ * Objet métier representant une Oeuvre
+ */
 @Entity
 @Table(name = "ARTWORK")
 public class Artwork {
 
     @Id
     @Column(name = "artwork_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "title")
@@ -40,9 +43,11 @@ public class Artwork {
     private RecordSupport recordSupport;
 
 
+    public Artwork() {}
+
     public Artwork(String title, ArtGenre genre) {
-        Objects.requireNonNull(title, "Artwork.title is required");
-        Objects.requireNonNull(genre, "Artwork.genre is required");
+        Assert.notNull(title, "Artwork.title is required");
+        Assert.notNull(genre, "Artwork.genre is required");
         this.title = title;
         this.genre = genre;
 

@@ -12,11 +12,14 @@ import java.util.Objects;
 
 import static fr.artefrance.daj.domain.rightholder.RightHolderType.*;
 
+/**
+ * Objet métier representant un ayant droit d'une oeuvre
+ */
 @Entity
 @DiscriminatorValue(value = "ARTWORK")
 public class ArtworkRightHolder extends RightHolder {
 
     public ArtworkRightHolder(String firstname, String lastname, List<RightHolderRole> roles) {
-        super(firstname, lastname, roles);
+        super(firstname, lastname, roles,RightHolderType.ARTWORK);
     }
 }

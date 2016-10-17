@@ -1,21 +1,28 @@
 package fr.artefrance.daj.service.statement;
 
+
 import fr.artefrance.daj.domain.statement.Statement;
-import fr.artefrance.daj.repository.statement.ProgramRepository;
-import fr.artefrance.daj.repository.statement.StatementRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import fr.artefrance.daj.domain.statement.StatementRightHolder;
+import fr.artefrance.daj.domain.statement.artwork.Artwork;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Service de géstion d'un objet {@link Statement}
+ */
+
 @Service
-public class StatementService {
+@Transactional
+public interface StatementService {
+    Statement findOneById(Long statementId);
 
-    @Autowired
-    StatementRepository statementRepository;
+    void create(Statement statement);
 
+    void addRightHolderToStatement(Long statementId, StatementRightHolder rightHolder);
 
-    @Transactional
-    public void create(Statement statement) {
-        statementRepository.save(statement);
-    }
+    void addArtworkToStatement(Long statementId, Artwork artwork);
+
+    Statement findOneWithFullDataById(Long statementId);
+
+    void validateStatement(Statement statement);
 }

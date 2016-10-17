@@ -1,12 +1,15 @@
 package fr.artefrance.daj.domain.statement;
 
 import fr.artefrance.daj.domain.statement.artwork.Artwork;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Objet métier reprensentant un relevé de droits d'auteur
+ */
 @Entity
 @Table(name = "STATEMENT")
 public class Statement {
@@ -25,14 +28,14 @@ public class Statement {
     private Program program;
 
     @Column(name = "last_activity_date")
-    @Temporal( TemporalType.DATE )
+    @Temporal(TemporalType.DATE)
     private Date lastActivityDate;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "statement_id")
-    private List<StatementRightHolder> statementRightHolders;
+    private List<StatementRightHolder> rightHolders;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "statement_id")
     private List<Artwork> artworks;
 
@@ -74,12 +77,12 @@ public class Statement {
         this.lastActivityDate = lastActivityDate;
     }
 
-    public List<StatementRightHolder> getStatementRightHolders() {
-        return statementRightHolders;
+    public List<StatementRightHolder> getRightHolders() {
+        return rightHolders;
     }
 
-    public void setStatementRightHolders(List<StatementRightHolder> statementRightHolders) {
-        this.statementRightHolders = statementRightHolders;
+    public void setRightHolders(List<StatementRightHolder> rightHolders) {
+        this.rightHolders = rightHolders;
     }
 
     public List<Artwork> getArtworks() {
@@ -111,12 +114,11 @@ public class Statement {
     }
 
 
-
-    public Boolean canBeValidated() {
-
-        return canBeRecorded() && statementRightHolders != null && !statementRightHolders
-                .isEmpty() && statementRightHolders.size() > 1 && (hasNoArtworks || artworks != null && !artworks
-                .isEmpty());
+    public void checkValidation() {
+        Assert.isTrue(canBeRecorded(),"Statement cannot be recorded");
+        Assert.notEmpty(rightHolders,"Statement.rightHolders cannot be empty");
+        Assert.isTrue(rightHolders.size() > 1,"Statement.rightHolders should contain at less two right holders");
+        Assert.isTrue(hasNoArtworks || artworks != null && !artworks.isEmpty(),"Statement should contain artworks");
     }
 
     @Override
@@ -126,7 +128,7 @@ public class Statement {
                 ", status=" + status +
                 ", program=" + program +
                 ", lastActivityDate=" + lastActivityDate +
-                ", statementRightHolders=" + statementRightHolders +
+                ", rightHolders=" + rightHolders +
                 ", artworks=" + artworks +
                 ", hasNoArtworks=" + hasNoArtworks +
                 ", producerOwnerId=" + producerOwnerId +
