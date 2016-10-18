@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 
 public class StatementFactory {
 
-    public static Statement createStatementWithNoArtworks(int index) {
+    private static Statement createStatementWithNoArtworks(int index) {
 
         Statement statement = new Statement();
 

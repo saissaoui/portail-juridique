@@ -17,11 +17,14 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Component
 public class JerseyClientImpl implements JerseyClient {
 
-    @Autowired
     private Client client;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private static final Logger logger = getLogger(JerseyClient.class);
+
+    public JerseyClientImpl() {
+        client = Client.create();
+    }
 
     public String callWebService(String serviceUrl, String serviceName, Object params) throws IOException {
 
