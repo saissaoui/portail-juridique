@@ -4,15 +4,16 @@ import fr.artefrance.daj.domain.statement.Statement;
 import fr.artefrance.daj.domain.statement.StatementRightHolder;
 import fr.artefrance.daj.domain.statement.StatementStatus;
 import fr.artefrance.daj.domain.statement.artwork.Artwork;
-import fr.artefrance.daj.infrastructure.database.JpaRepositoryConfig;
+import fr.artefrance.daj.repository.config.JpaRepositoryConfig;
 import fr.artefrance.daj.integrationTest.config.IntegrationTestConfig;
-import fr.artefrance.daj.integrationTest.infrastructure.database.IntegrationTestDatasourceConfig;
+import fr.artefrance.daj.integrationTest.config.IntegrationTestDatasourceConfig;
 import fr.artefrance.daj.repository.statement.ArtGenreRepository;
 import fr.artefrance.daj.repository.statement.ProgramRepository;
 import fr.artefrance.daj.service.statement.StatementService;
 import fr.artefrance.daj.test.factory.ArtworkFactory;
 import fr.artefrance.daj.test.factory.ProgramFactory;
 import fr.artefrance.daj.test.factory.RightHolderFactory;
+import fr.artefrance.daj.test.factory.StatementFactory;
 import org.hamcrest.CoreMatchers;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,7 +24,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
-import java.util.Date;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -46,9 +47,7 @@ public class StatementServiceImplTest {
     @Test
     public void statement_should_have_id_when_created() {
         //GIVEN
-        Statement statement = new Statement();
-        statement.setLastActivityDate(new Date());
-        statement.setStatus(StatementStatus.PENDING);
+        Statement statement = StatementFactory.createBasicStatement();
 
         statement.setProgram(ProgramFactory.createProgram());
         //WHEN
@@ -64,9 +63,7 @@ public class StatementServiceImplTest {
     @Test
     public void right_holder_can_be_added_to_statement() {
         //GIVEN
-        Statement statement = new Statement();
-        statement.setLastActivityDate(new Date());
-        statement.setStatus(StatementStatus.PENDING);
+        Statement statement = StatementFactory.createBasicStatement();
 
         statement.setProgram(ProgramFactory.createProgram());
         statementService.create(statement);
@@ -87,9 +84,7 @@ public class StatementServiceImplTest {
     @Test
     public void artwork_can_be_added_to_statement() {
         //GIVEN
-        Statement statement = new Statement();
-        statement.setLastActivityDate(new Date());
-        statement.setStatus(StatementStatus.PENDING);
+        Statement statement = StatementFactory.createBasicStatement();
 
         statement.setProgram(ProgramFactory.createProgram());
         statementService.create(statement);
@@ -115,9 +110,7 @@ public class StatementServiceImplTest {
         thrown.expectMessage(CoreMatchers.containsString("Artwork.title is required"));
 
         //GIVEN
-        Statement statement = new Statement();
-        statement.setLastActivityDate(new Date());
-        statement.setStatus(StatementStatus.PENDING);
+        Statement statement = StatementFactory.createBasicStatement();
 
         statement.setProgram(ProgramFactory.createProgram());
         statementService.create(statement);
@@ -133,9 +126,7 @@ public class StatementServiceImplTest {
     @Test
     public void artwork_status_should_be_validated_if_hasNoArtWork_checked_ad_has_two_rightholders() {
         //GIVEN
-        Statement statement = new Statement();
-        statement.setLastActivityDate(new Date());
-        statement.setStatus(StatementStatus.PENDING);
+        Statement statement = StatementFactory.createBasicStatement();
 
         statement.setProgram(ProgramFactory.createProgram());
         statement.setRightHolders(RightHolderFactory.createTwoStatementRightholders());
@@ -159,9 +150,7 @@ public class StatementServiceImplTest {
         thrown.expectMessage(CoreMatchers.containsString("Statement should contain artworks"));
 
         //GIVEN
-        Statement statement = new Statement();
-        statement.setLastActivityDate(new Date());
-        statement.setStatus(StatementStatus.PENDING);
+        Statement statement = StatementFactory.createBasicStatement();
 
         statement.setProgram(ProgramFactory.createProgram());
         statement.setRightHolders(RightHolderFactory.createTwoStatementRightholders());
@@ -182,9 +171,7 @@ public class StatementServiceImplTest {
                                                                  "holders"));
 
         //GIVEN
-        Statement statement = new Statement();
-        statement.setLastActivityDate(new Date());
-        statement.setStatus(StatementStatus.PENDING);
+        Statement statement = StatementFactory.createBasicStatement();
 
         statement.setProgram(ProgramFactory.createProgram());
         statement.setRightHolders(Arrays.asList(RightHolderFactory.createStatementRightHolder(1L)));
@@ -198,5 +185,20 @@ public class StatementServiceImplTest {
 
     }
 
+    @Test
+    public void all_statements_should_be_valid_when_archived_st_are_retrieved() {
 
+        //GIVEN
+        Long producerId = 1L;
+
+        //WHEN
+
+        List<Statement> archived = statementService.findArchivedStatementsByProducerId(producerId);
+
+        //THEN
+
+        assertThat(archived).isNotEmpty();
+        assertThat(archived).allMatch(statement -> statement.getStatus().equals(StatementStatus.VALID));
+
+    }
 }

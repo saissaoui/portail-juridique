@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class StatementServiceImpl implements StatementService {
@@ -70,6 +71,11 @@ public class StatementServiceImpl implements StatementService {
         statement.setStatus(StatementStatus.VALID);
         statementRepository.save(statement);
 
+    }
+
+    @Override
+    public List<Statement> findArchivedStatementsByProducerId(Long producerId) {
+        return statementRepository.findArchivedStatementsByProducerId(producerId);
     }
 
     /**

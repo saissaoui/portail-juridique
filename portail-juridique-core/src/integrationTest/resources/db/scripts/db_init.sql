@@ -60,7 +60,6 @@ CREATE TABLE RECORD_SUPPORT(
 
 CREATE  TABLE PROGRAM(
   program_id NUMBER PRIMARY KEY,
- -- statement_id NUMBER ,
   original_title VARCHAR(50),
   original_subtitle VARCHAR(50),
   contractual_title VARCHAR(50),

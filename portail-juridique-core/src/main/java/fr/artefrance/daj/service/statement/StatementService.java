@@ -7,6 +7,8 @@ import fr.artefrance.daj.domain.statement.artwork.Artwork;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Service de géstion d'un objet {@link Statement}
  */
@@ -25,4 +27,7 @@ public interface StatementService {
     Statement findOneWithFullDataById(Long statementId);
 
     void validateStatement(Statement statement);
+
+
+    List<Statement> findArchivedStatementsByProducerId(Long producerId);
 }
