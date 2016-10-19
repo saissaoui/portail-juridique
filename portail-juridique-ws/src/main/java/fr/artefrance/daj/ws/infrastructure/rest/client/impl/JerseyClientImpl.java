@@ -6,7 +6,6 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import fr.artefrance.daj.ws.infrastructure.rest.client.JerseyClient;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.core.MediaType;
@@ -20,7 +19,7 @@ public class JerseyClientImpl implements JerseyClient {
     private Client client;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private static final Logger logger = getLogger(JerseyClient.class);
+    private static final Logger LOGGER = getLogger(JerseyClient.class);
 
     public JerseyClientImpl() {
         client = Client.create();
@@ -44,7 +43,7 @@ public class JerseyClientImpl implements JerseyClient {
 
             entity = response.getEntity(String.class);
         } catch (IOException e) {
-            logger.error("Error when calling Web Service", e);
+            LOGGER.error("Error when calling Web Service", e);
         }
 
         return entity;
