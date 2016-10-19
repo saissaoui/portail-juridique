@@ -8,6 +8,7 @@ import fr.artefrance.daj.repository.statement.StatementRepository;
 import fr.artefrance.daj.service.statement.StatementService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -26,8 +27,7 @@ public class StatementServiceImpl implements StatementService {
 
     @Override
     public void create(Statement statement) {
-        if (statement.canBeRecorded())
-            statementRepository.save(statement);
+        statementRepository.save(statement);
     }
 
     @Override
@@ -66,9 +66,24 @@ public class StatementServiceImpl implements StatementService {
 
     @Override
     public void validateStatement(Statement statement) {
-        statement.checkValidation();
-
+        checkForValidation(statement);
         statement.setStatus(StatementStatus.VALID);
         statementRepository.save(statement);
+
     }
+
+    /**
+     * Verifie si un objet {@link Statement} peut être passé au statut validé
+     * @param statement
+     */
+    private void checkForValidation(Statement statement) {
+        Assert.notNull(statement);
+        Assert.notEmpty(statement.getRightHolders(), "Statement.rightHolders can not be empty");
+        Assert.isTrue(statement.getRightHolders().size() > 1, "Statement.rightHolders should contain at less two " +
+                "right holders");
+        Assert.isTrue(statement.getHasNoArtworks() || statement.getArtworks() != null && !statement.getArtworks()
+                                                                                                   .isEmpty(),
+                      "Statement should contain artworks");
+    }
+
 }

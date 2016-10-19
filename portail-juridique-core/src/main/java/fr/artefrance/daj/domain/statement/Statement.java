@@ -4,6 +4,7 @@ import fr.artefrance.daj.domain.statement.artwork.Artwork;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -21,14 +22,17 @@ public class Statement {
 
     @Column
     @Enumerated(EnumType.STRING)
+    @NotNull
     private StatementStatus status;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "program_id")
+    @NotNull
     private Program program;
 
     @Column(name = "last_activity_date")
     @Temporal(TemporalType.DATE)
+    @NotNull
     private Date lastActivityDate;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -107,18 +111,6 @@ public class Statement {
 
     public void setProducerOwnerId(Long producerOwnerId) {
         this.producerOwnerId = producerOwnerId;
-    }
-
-    public Boolean canBeRecorded() {
-        return lastActivityDate != null && status != null && program != null;
-    }
-
-
-    public void checkValidation() {
-        Assert.isTrue(canBeRecorded(),"Statement cannot be recorded");
-        Assert.notEmpty(rightHolders,"Statement.rightHolders cannot be empty");
-        Assert.isTrue(rightHolders.size() > 1,"Statement.rightHolders should contain at less two right holders");
-        Assert.isTrue(hasNoArtworks || artworks != null && !artworks.isEmpty(),"Statement should contain artworks");
     }
 
     @Override
