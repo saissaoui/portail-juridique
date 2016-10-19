@@ -2,6 +2,9 @@ package fr.artefrance.daj.domain.statement.artwork;
 
 import javax.persistence.*;
 
+/**
+ * Objet métier representant un support d'enregistrement
+ */
 @Entity
 @Table(name = "RECORD_SUPPORT")
 public class RecordSupport {

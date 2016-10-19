@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Objet métier reprensentant un genre artistique: court métrage, musique...
+ */
 @Entity
 @Table(name = "ART_GENRE")
 public class ArtGenre {
@@ -16,6 +19,12 @@ public class ArtGenre {
     @Column(name = "genre_label")
     private String genreLabel;
 
+    public ArtGenre() {}
+
+    public ArtGenre(String genreCode) {
+        this.genreCode = genreCode;
+    }
+
     public String getGenreCode() {
         return genreCode;
     }
@@ -26,10 +35,6 @@ public class ArtGenre {
 
     public String getGenreLabel() {
         return genreLabel;
-    }
-
-    public void setGenreLabel(String genreLabel) {
-        this.genreLabel = genreLabel;
     }
 
     @Override

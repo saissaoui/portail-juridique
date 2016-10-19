@@ -7,7 +7,10 @@ import fr.artefrance.daj.domain.statement.ArtGenre;
 public class ArtworkFactory {
 
     public static Artwork createArtwork() {
-        ArtGenre genre = new ArtGenre();
-        return new Artwork("title", genre);
+        return new Artwork("Oeuvre de test", new ArtGenre("CMF"));
+    }
+
+    public static Artwork createInvalidArtwork() {
+        return new Artwork(null, new ArtGenre("CMF"));
     }
 }

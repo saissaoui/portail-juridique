@@ -35,15 +35,12 @@ public class Program {
     @Column(name = "arte_em_number")
     private String arteEmNumber;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "genre_code", insertable = false, updatable = false)
     private ArtGenre genre;
 
     @Column(name = "isan")
     private String isan;
-    @Transient
-    // @OneToOne(mappedBy = "program")
-    private Statement statement;
 
     public Long getId() {
         return id;
@@ -133,11 +130,4 @@ public class Program {
         this.isan = isan;
     }
 
-    public Statement getStatement() {
-        return statement;
-    }
-
-    public void setStatement(Statement statement) {
-        this.statement = statement;
-    }
 }

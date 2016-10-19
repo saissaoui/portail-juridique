@@ -25,9 +25,7 @@ public class ProgramFactory {
 
     public static Program createProgram() {
 
-        ArtGenre genre = new ArtGenre();
-        genre.setGenreCode("CF");
-        genre.setGenreLabel("Court métrage de fiction");
+        ArtGenre genre = new ArtGenre("CMF");
 
         Program program = createProgram(genre);
 

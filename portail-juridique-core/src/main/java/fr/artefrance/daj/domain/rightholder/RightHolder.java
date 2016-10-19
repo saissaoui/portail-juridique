@@ -6,14 +6,19 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Objet métier representant un ayant droit.
+ * Classe abstraite heritée par {@link fr.artefrance.daj.domain.statement.StatementRightHolder} et {@link fr.artefrance.daj.domain.statement.artwork.ArtworkRightHolder}
+ */
 @Entity
 @Table(name = "RIGHT_HOLDER")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE")
+@DiscriminatorColumn(name = "type")
 public abstract class RightHolder {
 
     @Id
     @Column(name = "right_holder_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
@@ -27,14 +32,13 @@ public abstract class RightHolder {
     @JoinTable(name = "RIGHT_HOLDER_HOLDER_ROLE", joinColumns = {@JoinColumn(name = "right_holder_id")}, inverseJoinColumns = {@JoinColumn(name = "role_code")})
     private List<RightHolderRole> roles;
 
-    @Column(name = "type")
-    @Enumerated(EnumType.STRING)
-    private RightHolderType type;
+    public RightHolder() {}
 
-    public RightHolder(String firstname, String lastname, List<RightHolderRole> roles) {
+    public RightHolder(String firstname, String lastname, List<RightHolderRole> roles, RightHolderType type) {
         Objects.requireNonNull(firstname, "RightHolder.firstname is required!");
         Objects.requireNonNull(lastname, "RightHolder.lastname is required!");
         Objects.requireNonNull(roles, "RightHolder.roles is required!");
+        Objects.requireNonNull(type, "RightHolder.type is required!");
         Assert.notEmpty(roles, "RightHolder.roles should not be empty!");
 
         this.firstname = firstname;
@@ -74,11 +78,4 @@ public abstract class RightHolder {
         this.roles = roles;
     }
 
-    public RightHolderType getType() {
-        return type;
-    }
-
-    public void setType(RightHolderType type) {
-        this.type = type;
-    }
 }
