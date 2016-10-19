@@ -1,4 +1,4 @@
-package fr.artefrance.daj.ws.service;
+package fr.artefrance.daj.ws.rest.client;
 
 
 import fr.artefrance.daj.domain.security.User;

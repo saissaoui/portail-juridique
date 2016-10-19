@@ -1,4 +1,13 @@
 portail-juridique:
   sophia:
-    web-service-url: http://localhost:8080
+    ws-url: http://localhost:8080/get_producer_programs
     producer-programs-service: /get_producer_programs
+
+spring:
+  jpa:
+    database: h2
+  datasource:
+    url: jdbc:h2:./target/data/test
+    username:
+    password:
+    driver-class-name: org.h2.Driver

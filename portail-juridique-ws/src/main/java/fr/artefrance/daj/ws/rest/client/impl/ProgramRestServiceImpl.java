@@ -1,19 +1,20 @@
-package fr.artefrance.daj.ws.service.impl;
+package fr.artefrance.daj.ws.rest.client.impl;
 
 import fr.artefrance.daj.domain.security.User;
 import fr.artefrance.daj.domain.statement.Program;
-import fr.artefrance.daj.ws.infrastructure.rest.client.JerseyClient;
-import fr.artefrance.daj.ws.service.ProgramRestService;
-import fr.artefrance.daj.ws.service.WebServiceReader.impl.ProgramWebServiceReader;
+import fr.artefrance.daj.ws.rest.client.ProgramRestService;
+import org.glassfish.jersey.client.JerseyClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.List;
 
 public class ProgramRestServiceImpl implements ProgramRestService {
 
-    @Value("portail-juridique.sophia.web-service-url")
+    @Value("portail-juridique.sophia.ws-url")
     private String SOPHIA_WS_URL;
 
     @Value("portail-juridique.sophia.producer-programs-service")
@@ -25,9 +26,10 @@ public class ProgramRestServiceImpl implements ProgramRestService {
     @Override
     public List<Program> getProducerProgramsFromSophia(User producer) throws IOException {
 
-        String wsReturnStringValue = jerseyClient.callWebService(SOPHIA_WS_URL, SOPHIA_WS_PRODUCER_PROGRAMS_SERVICE);
-        ProgramWebServiceReader reader = new ProgramWebServiceReader();
-
-        return reader.read(wsReturnStringValue);
+        return jerseyClient.target(SOPHIA_WS_URL)
+                           .path(SOPHIA_WS_PRODUCER_PROGRAMS_SERVICE)
+                           .request(MediaType.APPLICATION_JSON_TYPE)
+                           .get(new GenericType<List<Program>>() {
+                           });
     }
 }

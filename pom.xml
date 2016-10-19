@@ -27,13 +27,6 @@
 
     <dependencies>
 
-        <!-- Apache Commons Validator -->
-        <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>1.4.0</version>
-        </dependency>
-
         <!-- spring-boot-validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

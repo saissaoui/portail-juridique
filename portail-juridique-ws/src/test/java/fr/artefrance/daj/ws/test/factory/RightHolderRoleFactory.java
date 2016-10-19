@@ -22,7 +22,7 @@ public class RightHolderRoleFactory {
 
         RightHolderRole holderRole = new RightHolderRole();
         holderRole.setRoleCode(code);
-        holderRole.setRoleLabel(label);
+//        holderRole.setRoleLabel(label);
 
         return holderRole;
     }
@@ -36,7 +36,7 @@ public class RightHolderRoleFactory {
         roles.forEach((key, value) -> {
             RightHolderRole rightHolderRole = new RightHolderRole();
             rightHolderRole.setRoleCode(key);
-            rightHolderRole.setRoleLabel(value);
+//            rightHolderRole.setRoleLabel(value);
             rightHolderRoles.add(rightHolderRole);
         });
         return rightHolderRoles;

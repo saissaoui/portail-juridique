@@ -23,7 +23,7 @@ public class StatementFactory {
         statement.setHasNoArtworks(true);
         statement.setArtworks(null);
         statement.setProducerOwnerId((long) 100 + index);
-        statement.setStatementRightHolders(StatementRightHolderFactory.createSomeStatementRightHolderWithOneRightHolderRole(5));
+        statement.setRightHolders(StatementRightHolderFactory.createSomeStatementRightHolderWithOneRightHolderRole(5));
 
         return  statement;
     }

@@ -31,7 +31,7 @@ class WebExceptionHandler {
     @ExceptionHandler(URISyntaxException.class)
     public Response uriSyntaxError(URISyntaxException e) {
         LOGGER.error(
-                "uri syntax error",
+                "Uri syntax error",
                 e);
         return Response.status(BAD_GATEWAY)
                        .build();

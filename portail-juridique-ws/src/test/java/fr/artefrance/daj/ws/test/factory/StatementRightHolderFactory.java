@@ -16,18 +16,20 @@ public class StatementRightHolderFactory {
 
         String firstname = "rightHolder_firstname_" + index;
         String lastname = "rightHolder_lastname_" + index;
+        Long partner_id = (long)index;
         List< RightHolderRole > roles = RightHolderRoleFactory.oneRightHolderRole();
 
-        return new StatementRightHolder(firstname, lastname, roles);
+        return new StatementRightHolder(firstname, lastname, roles, partner_id);
     }
 
     public static StatementRightHolder createOneStatementRightHolderWithSomeRightHolderRole(int index) {
 
         String firstname = "rightHolder_firstname_" + index;
         String lastname = "rightHolder_lastname_" + index;
+        Long partner_id = (long)index;
         List< RightHolderRole > roles = RightHolderRoleFactory.someRightHolderRole();
 
-        return new StatementRightHolder(firstname, lastname, roles);
+        return new StatementRightHolder(firstname, lastname, roles, partner_id);
     }
 
     private static StatementRightHolder createOneStatementRightHolderWithOneRightHolderRole() {
