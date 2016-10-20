@@ -1,4 +1,4 @@
-package fr.artefrance.daj.infrastructure.database;
+package fr.artefrance.daj.repository.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

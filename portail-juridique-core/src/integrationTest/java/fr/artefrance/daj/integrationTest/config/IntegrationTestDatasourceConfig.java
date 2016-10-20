@@ -1,4 +1,4 @@
-package fr.artefrance.daj.integrationTest.infrastructure.database;
+package fr.artefrance.daj.integrationTest.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

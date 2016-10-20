@@ -1,7 +1,6 @@
 package fr.artefrance.daj.domain.statement;
 
 import fr.artefrance.daj.domain.statement.artwork.Artwork;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -47,6 +46,7 @@ public class Statement {
     private Boolean hasNoArtworks;
 
     @Column(name = "producer_owner_id")
+    @NotNull
     private Long producerOwnerId;
 
     public Long getId() {
