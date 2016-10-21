@@ -8,13 +8,16 @@ import fr.artefrance.daj.repository.statement.StatementRepository;
 import fr.artefrance.daj.service.statement.StatementService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
+@Transactional
 public class StatementServiceImpl implements StatementService {
 
     @Autowired
@@ -27,8 +30,8 @@ public class StatementServiceImpl implements StatementService {
     }
 
     @Override
-    public void create(Statement statement) {
-        statementRepository.save(statement);
+    public Statement create(Statement statement) {
+        return statementRepository.save(statement);
     }
 
     @Override
@@ -66,11 +69,16 @@ public class StatementServiceImpl implements StatementService {
     }
 
     @Override
-    public void validateStatement(Statement statement) {
+    public Statement validateStatement(Statement statement) {
         checkForValidation(statement);
         statement.setStatus(StatementStatus.VALID);
-        statementRepository.save(statement);
+        return statementRepository.save(statement);
 
+    }
+
+    @Override
+    public List<Statement> findAllProducerStatements() {
+        return statementRepository.findAll();
     }
 
     @Override

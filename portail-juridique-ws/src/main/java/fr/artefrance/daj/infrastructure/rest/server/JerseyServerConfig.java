@@ -1,4 +1,4 @@
-package fr.artefrance.daj.ws.infrastructure.rest.server;
+package fr.artefrance.daj.infrastructure.rest.server;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;

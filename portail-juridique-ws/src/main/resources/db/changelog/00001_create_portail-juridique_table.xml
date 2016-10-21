@@ -1,14 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <changeSet id="1" author="p-kassem">
-        <createTable tableName="STATEMENT">
-            <column name="statement_id" type="LONG">
+        <createTable tableName="statement">
+            <column name="statement_id" type="long">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="status" type="VARCHAR(10)">
+            <column name="status" type="varchar(10)">
                 <constraints nullable="false"/>
             </column>
             <column name="last_activity_date" type="DATETIME">
@@ -17,159 +18,159 @@
             <column name="has_no_artworks" type="CHAR">
                 <constraints nullable="true"/>
             </column>
-            <column name="program_id" type="LONG">
+            <column name="program_id" type="long">
                 <constraints nullable="false"/>
             </column>
-            <column name="producer_owner_id" type="LONG">
+            <column name="producer_owner_id" type="long">
                 <constraints nullable="true"/>
             </column>
         </createTable>
-        <createTable tableName="RIGHT_HOLDER">
-            <column name="right_holder_id" type="LONG">
+        <createTable tableName="right_holder">
+            <column name="right_holder_id" type="long">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="firstname" type="VARCHAR(60)">
+            <column name="firstname" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
-            <column name="lastname" type="VARCHAR(60)">
+            <column name="lastname" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
-            <column name="statement_id" type="LONG">
+            <column name="statement_id" type="long">
                 <constraints nullable="true"/>
             </column>
-            <column name="artwork_id" type="LONG">
+            <column name="artwork_id" type="long">
                 <constraints nullable="true"/>
             </column>
-            <column name="partner_id" type="LONG">
+            <column name="partner_id" type="long">
                 <constraints nullable="false"/>
             </column>
-            <column name="type" type="VARCHAR(10)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-        <createTable tableName="RIGHT_HOLDER_ROLE">
-            <column name="role_code" type="VARCHAR(10)">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="role_label" type="VARCHAR(60)">
-                <constraints nullable="true"/>
-            </column>
-        </createTable>
-        <createTable tableName="RIGHT_HOLDER_HOLDER_ROLE">
-            <column name="role_code" type="VARCHAR(10)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="right_holder_id" type="LONG">
-                <constraints nullable="true"/>
-            </column>
-        </createTable>
-        <createTable tableName="ARTWORK">
-            <column name="artwork_id" type="LONG">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="title" type="VARCHAR(60)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="genre_code" type="VARCHAR(60)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="music_type" type="LONG">
-                <constraints nullable="true"/>
-            </column>
-            <column name="record_support_id" type="LONG">
-                <constraints nullable="true"/>
-            </column>
-            <column name="statement_id" type="LONG">
+            <column name="type" type="varchar(10)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="ART_GENRE">
-            <column name="genre_code" type="VARCHAR(10)">
+        <createTable tableName="right_holder_role">
+            <column name="role_code" type="varchar(10)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="genre_label" type="VARCHAR(50)">
+            <column name="role_label" type="varchar(60)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="right_holder_holder_role">
+            <column name="role_code" type="varchar(10)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="right_holder_id" type="long">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="artwork">
+            <column name="artwork_id" type="long">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="genre_code" type="varchar(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="music_type" type="long">
+                <constraints nullable="true"/>
+            </column>
+            <column name="record_support_id" type="long">
+                <constraints nullable="true"/>
+            </column>
+            <column name="statement_id" type="long">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="ARTWORK_TIMECODE">
-            <column name="timecode_id" type="LONG">
+        <createTable tableName="art_genre">
+            <column name="genre_code" type="varchar(10)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="timecode_in" type="LONG">
-                <constraints nullable="true"/>
-            </column>
-            <column name="timecode_out" type="LONG">
-                <constraints nullable="true"/>
-            </column>
-            <column name="duration" type="LONG">
-                <constraints nullable="true"/>
-            </column>
-            <column name="artwork_id" type="LONG">
+            <column name="genre_label" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="RECORD_SUPPORT">
-            <column name="record_support_id" type="LONG">
+        <createTable tableName="artwork_timecode">
+            <column name="timecode_id" type="long">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="producer_name" type="VARCHAR(60)">
+            <column name="timecode_in" type="long">
                 <constraints nullable="true"/>
             </column>
-            <column name="support_label" type="VARCHAR(60)">
+            <column name="timecode_out" type="long">
                 <constraints nullable="true"/>
             </column>
-            <column name="support_number" type="VARCHAR(60)">
+            <column name="duration" type="long">
                 <constraints nullable="true"/>
             </column>
-            <column name="support_identifier" type="VARCHAR(10)">
+            <column name="artwork_id" type="long">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="record_support">
+            <column name="record_support_id" type="long">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="producer_name" type="varchar(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="support_label" type="varchar(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="support_number" type="varchar(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="support_identifier" type="varchar(10)">
                 <constraints nullable="true"/>
             </column>
         </createTable>
-        <createTable tableName="PROGRAM">
-            <column name="program_id" type="LONG">
+        <createTable tableName="program">
+            <column name="program_id" type="long">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="original_title" type="VARCHAR(60)">
+            <column name="original_title" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
-            <column name="original_subtitle" type="VARCHAR(60)">
+            <column name="original_subtitle" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
-            <column name="contractual_title" type="VARCHAR(60)">
+            <column name="contractual_title" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
-            <column name="contractual_subtitle" type="VARCHAR(60)">
+            <column name="contractual_subtitle" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
-            <column name="production_year" type="LONG">
+            <column name="production_year" type="long">
                 <constraints nullable="true"/>
             </column>
-            <column name="episode_number" type="LONG">
+            <column name="episode_number" type="long">
                 <constraints nullable="true"/>
             </column>
-            <column name="duration" type="LONG">
+            <column name="duration" type="long">
                 <constraints nullable="true"/>
             </column>
-            <column name="arte_em_number" type="VARCHAR(60)">
+            <column name="arte_em_number" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
-            <column name="genre_code" type="VARCHAR(60)">
+            <column name="genre_code" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
-            <column name="isan" type="VARCHAR(60)">
+            <column name="isan" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint constraintName="FK_STATEMENT_PROGRAM"
-                                 baseTableName="STATEMENT"
+        <addForeignKeyConstraint constraintName="fk_statement_program"
+                                 baseTableName="statement"
                                  baseColumnNames="program_id"
-                                 referencedTableName="PROGRAM"
+                                 referencedTableName="program"
                                  referencedColumnNames="program_id"
                                  />
-        <addForeignKeyConstraint constraintName="FK_GENRE_PROGRAM"
-                                 baseTableName="PROGRAM"
+        <addForeignKeyConstraint constraintName="fk_genre_program"
+                                 baseTableName="program"
                                  baseColumnNames="genre_code"
-                                 referencedTableName="ART_GENRE"
+                                 referencedTableName="art_genre"
                                  referencedColumnNames="genre_code"
         />
     </changeSet>
