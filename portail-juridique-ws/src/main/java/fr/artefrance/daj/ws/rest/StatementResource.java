@@ -30,10 +30,8 @@ public class StatementResource {
     @Path("/")
     public Response producerStatements() {
 
-        List<Statement> statements = Arrays.asList(
-                this.statementService.findOneById(1L),
-                this.statementService.findOneById(2L)
-                                                  );
+        List<Statement> statements = this.statementService.findAllProducerStatements();
+        System.out.println("statements = " + statements);
 
         return Response.status(OK)
                        .entity(statements)
@@ -45,6 +43,7 @@ public class StatementResource {
     public Response statement(@PathParam("statement_id") int statement_id) {
 
         Statement statement = this.statementService.findOneById((long) statement_id);
+        System.out.println("statement = " + statement);
 
         return Response.status(OK)
                        .entity(statement)
@@ -52,11 +51,12 @@ public class StatementResource {
     }
 
     @PUT
-    @Path("{statement_id}/update")
+    @Path("{statement_id}/validate")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateStatement(Statement statement) {
+    public Response validateStatement(Statement statement) {
 
-        Statement updatedStatement = this.statementService.findOneById(1L);
+        Statement updatedStatement = this.statementService.validateStatement(statement);
+        System.out.println("updatedStatement = " + updatedStatement);
 
         return Response.status(OK)
                        .entity(updatedStatement)
@@ -80,10 +80,10 @@ public class StatementResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createStatement(Statement statement) {
 
-        Statement createdStatement = this.statementService.findOneById(1L);
-
+        Statement createdStatement = this.statementService.create(statement);
+        System.out.println("createdStatement = " + createdStatement);
         return Response.status(CREATED)
-                       .header(HttpHeaders.LOCATION, createdStatement.getId())
+                       .header(HttpHeaders.LOCATION, "statements/" + createdStatement.getId())
                        .build();
     }
 

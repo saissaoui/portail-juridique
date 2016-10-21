@@ -4,21 +4,16 @@ package fr.artefrance.daj.service.statement;
 import fr.artefrance.daj.domain.statement.Statement;
 import fr.artefrance.daj.domain.statement.StatementRightHolder;
 import fr.artefrance.daj.domain.statement.artwork.Artwork;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Service de géstion d'un objet {@link Statement}
  */
-
-@Service
-@Transactional
 public interface StatementService {
     Statement findOneById(Long statementId);
 
-    void create(Statement statement);
+    Statement create(Statement statement);
 
     void addRightHolderToStatement(Long statementId, StatementRightHolder rightHolder);
 
@@ -26,8 +21,9 @@ public interface StatementService {
 
     Statement findOneWithFullDataById(Long statementId);
 
-    void validateStatement(Statement statement);
+    Statement validateStatement(Statement statement);
 
+    List<Statement> findAllProducerStatements();
 
     List<Statement> findArchivedStatementsByProducerId(Long producerId);
 }

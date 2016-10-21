@@ -1,4 +1,4 @@
-package fr.artefrance.daj.ws.infrastructure.liquibase;
+package fr.artefrance.daj.infrastructure.liquibase;
 
 
 import liquibase.integration.spring.SpringLiquibase;
@@ -11,10 +11,10 @@ import javax.sql.DataSource;
 @Configuration
 public class LiquibaseConfig {
 
+    private static final String LIQUIBASE_MASTER_FILE_LOCATION = "classpath:db/changelog/master.xml";
+
     @Autowired
     DataSource dataSource;
-
-    private static final String LIQUIBASE_MASTER_FILE_LOCATION = "classpath:db/changelog/master.xml";
 
     @Bean
     public SpringLiquibase liquibase() {

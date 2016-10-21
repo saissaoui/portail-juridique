@@ -1,7 +1,6 @@
 package fr.artefrance.daj.ws.integrationTest.rest.client;
 
 
-import fr.artefrance.daj.domain.security.User;
 import fr.artefrance.daj.domain.statement.Program;
 import fr.artefrance.daj.ws.rest.client.ProgramRestService;
 
