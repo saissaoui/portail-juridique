@@ -1,11 +1,9 @@
-package fr.artefrance.daj.ws.test.factory;
+package fr.artefrance.daj.rest.test.factory;
 
 import fr.artefrance.daj.domain.statement.Program;
-import org.jvnet.hk2.internal.Collector;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 

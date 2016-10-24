@@ -12,10 +12,10 @@
             <column name="status" type="varchar(10)">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_activity_date" type="DATETIME">
+            <column name="last_activity_date" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="has_no_artworks" type="CHAR">
+            <column name="has_no_artworks" type="char">
                 <constraints nullable="true"/>
             </column>
             <column name="program_id" type="long">
@@ -58,10 +58,10 @@
         </createTable>
         <createTable tableName="right_holder_holder_role">
             <column name="role_code" type="varchar(10)">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="right_holder_id" type="long">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
         <createTable tableName="artwork">
@@ -154,25 +154,13 @@
             <column name="arte_em_number" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
-            <column name="genre_code" type="varchar(60)">
-                <constraints nullable="true"/>
+            <column name="genre_code" type="varchar(10)">
+                <constraints nullable="false"/>
             </column>
             <column name="isan" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint constraintName="fk_statement_program"
-                                 baseTableName="statement"
-                                 baseColumnNames="program_id"
-                                 referencedTableName="program"
-                                 referencedColumnNames="program_id"
-                                 />
-        <addForeignKeyConstraint constraintName="fk_genre_program"
-                                 baseTableName="program"
-                                 baseColumnNames="genre_code"
-                                 referencedTableName="art_genre"
-                                 referencedColumnNames="genre_code"
-        />
     </changeSet>
 
 </databaseChangeLog>

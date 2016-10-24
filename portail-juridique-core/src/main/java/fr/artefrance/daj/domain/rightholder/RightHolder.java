@@ -11,7 +11,7 @@ import java.util.Objects;
  * Classe abstraite heritée par {@link fr.artefrance.daj.domain.statement.StatementRightHolder} et {@link fr.artefrance.daj.domain.statement.artwork.ArtworkRightHolder}
  */
 @Entity
-@Table(name = "RIGHT_HOLDER")
+@Table(name = "right_holder")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
 public abstract class RightHolder {
@@ -27,12 +27,12 @@ public abstract class RightHolder {
     @Column
     private String lastname;
 
-    @Column
     @ManyToMany
-    @JoinTable(name = "RIGHT_HOLDER_HOLDER_ROLE", joinColumns = {@JoinColumn(name = "right_holder_id")}, inverseJoinColumns = {@JoinColumn(name = "role_code")})
+    @JoinTable(name = "right_holder_holder_role", joinColumns = {@JoinColumn(name = "right_holder_id")}, inverseJoinColumns = {@JoinColumn(name = "role_code")})
     private List<RightHolderRole> roles;
 
-    public RightHolder() {}
+    public RightHolder() {
+    }
 
     public RightHolder(String firstname, String lastname, List<RightHolderRole> roles, RightHolderType type) {
         Objects.requireNonNull(firstname, "RightHolder.firstname is required!");

@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Classe métier representant le rôle d'un ayant droit
  */
 @Entity
-@Table(name = "RIGHT_HOLDER_ROLE")
+@Table(name = "right_holder_role")
 public class RightHolderRole {
 
     @Id
@@ -19,8 +19,8 @@ public class RightHolderRole {
     @Column(name = "role_label")
     private String roleLabel;
 
-
-    public RightHolderRole() {}
+    public RightHolderRole() {
+    }
 
     public RightHolderRole(String roleCode) {
         this.roleCode = roleCode;
@@ -41,8 +41,8 @@ public class RightHolderRole {
     @Override
     public String toString() {
         return "RightHolderRole{" +
-                "roleLabel='" + roleLabel + '\'' +
-                ", roleCode='" + roleCode + '\'' +
+                "roleCode='" + roleCode + '\'' +
+                ", roleLabel='" + roleLabel + '\'' +
                 '}';
     }
 }

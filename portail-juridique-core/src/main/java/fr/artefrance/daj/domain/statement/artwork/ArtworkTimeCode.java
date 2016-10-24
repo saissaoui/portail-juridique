@@ -9,7 +9,7 @@ import java.time.LocalTime;
 
 
 @Entity
-@Table(name = "ARTWORK_TIMECODE")
+@Table(name = "artwork_timecode")
 public class ArtworkTimeCode {
 
     @Id
@@ -24,6 +24,9 @@ public class ArtworkTimeCode {
 
     @Column(name="duration")
     private Long duration;
+
+    @Column(name = "artwork_id")
+    private Long artworkId;
 
     public Long getId() {
         return id;
@@ -55,5 +58,24 @@ public class ArtworkTimeCode {
 
     public void setDuration(Long duration) {
         this.duration = duration;
+    }
+
+    public Long getArtworkId() {
+        return artworkId;
+    }
+
+    public void setArtworkId(Long artworkId) {
+        this.artworkId = artworkId;
+    }
+
+    @Override
+    public String toString() {
+        return "ArtworkTimeCode{" +
+                "id=" + id +
+                ", timeCodeIn=" + timeCodeIn +
+                ", timeCodeOut=" + timeCodeOut +
+                ", duration=" + duration +
+                ", artworkId=" + artworkId +
+                '}';
     }
 }

@@ -23,8 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -71,13 +70,13 @@ public class StatementServiceImplTest {
         StatementRightHolder rightHolder = RightHolderFactory.createStatementRightHolder(1L);
 
         //WHEN
-
         statementService.addRightHolderToStatement(statement.getId(), rightHolder);
 
         //THEN
-        statement = statementService.findOneWithFullDataById(statement.getId());
-        assertThat(statement.getRightHolders()).isNotEmpty();
-        assertThat(statement.getRightHolders().get(0)).isNotNull();
+        statement = statementService.findOneById(statement.getId());
+        Set<StatementRightHolder> rightHolders = new LinkedHashSet<>(statement.getRightHolders());
+        assertThat(rightHolders).isNotEmpty();
+        assertThat(rightHolders.iterator().next()).isNotNull();
 
     }
 
@@ -93,13 +92,13 @@ public class StatementServiceImplTest {
 
 
         //WHEN
-
         statementService.addArtworkToStatement(statement.getId(), artwork);
 
         //THEN
-        statement = statementService.findOneWithFullDataById(statement.getId());
-        assertThat(statement.getArtworks()).isNotEmpty();
-        assertThat(statement.getArtworks().get(0)).isNotNull();
+        statement = statementService.findOneById(statement.getId());
+        HashSet<Artwork> artworks = new HashSet<>(statement.getArtworks());
+        assertThat(artworks).isNotEmpty();
+        assertThat(artworks.iterator().next()).isNotNull();
 
     }
 
@@ -174,8 +173,9 @@ public class StatementServiceImplTest {
         Statement statement = StatementFactory.createBasicStatement();
 
         statement.setProgram(ProgramFactory.createProgram());
-        statement.setRightHolders(Arrays.asList(RightHolderFactory.createStatementRightHolder(1L)));
-
+        Set<StatementRightHolder> rightHolders = new LinkedHashSet<>();
+        rightHolders.add(RightHolderFactory.createStatementRightHolder(1L));
+        statement.setRightHolders(rightHolders);
 
         //WHEN
         statementService.validateStatement(statement);

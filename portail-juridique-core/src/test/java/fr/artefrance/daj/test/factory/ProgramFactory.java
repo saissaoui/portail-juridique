@@ -27,8 +27,6 @@ public class ProgramFactory {
 
         ArtGenre genre = new ArtGenre("CMF");
 
-        Program program = createProgram(genre);
-
-        return  program;
+        return createProgram(genre);
     }
 }

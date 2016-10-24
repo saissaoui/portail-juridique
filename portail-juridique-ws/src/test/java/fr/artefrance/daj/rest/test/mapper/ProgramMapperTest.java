@@ -1,11 +1,11 @@
-package fr.artefrance.daj.ws.test.rest.mapper;
+package fr.artefrance.daj.rest.test.mapper;
 
 
 import fr.artefrance.daj.domain.statement.Program;
-import fr.artefrance.daj.ws.rest.dto.ProgramDTO;
-import fr.artefrance.daj.ws.rest.mapper.ProgramMapper;
-import fr.artefrance.daj.ws.test.factory.ProgramDTOFactory;
-import fr.artefrance.daj.ws.test.factory.ProgramFactory;
+import fr.artefrance.daj.rest.dto.ProgramDTO;
+import fr.artefrance.daj.rest.mapper.ProgramMapper;
+import fr.artefrance.daj.rest.test.factory.ProgramDTOFactory;
+import fr.artefrance.daj.rest.test.factory.ProgramFactory;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

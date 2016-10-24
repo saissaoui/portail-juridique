@@ -1,4 +1,4 @@
-package fr.artefrance.daj.infrastructure.liquibase;
+package fr.artefrance.daj.infrastructure;
 
 
 import liquibase.integration.spring.SpringLiquibase;

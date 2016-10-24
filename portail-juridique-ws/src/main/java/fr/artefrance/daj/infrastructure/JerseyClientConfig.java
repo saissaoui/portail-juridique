@@ -1,4 +1,4 @@
-package fr.artefrance.daj.infrastructure.rest.client;
+package fr.artefrance.daj.infrastructure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

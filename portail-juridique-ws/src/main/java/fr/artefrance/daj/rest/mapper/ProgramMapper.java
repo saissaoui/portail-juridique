@@ -1,8 +1,8 @@
-package fr.artefrance.daj.ws.rest.mapper;
+package fr.artefrance.daj.rest.mapper;
 
 
 import fr.artefrance.daj.domain.statement.Program;
-import fr.artefrance.daj.ws.rest.dto.ProgramDTO;
+import fr.artefrance.daj.rest.dto.ProgramDTO;
 
 public enum ProgramMapper {
     INSTANCE;

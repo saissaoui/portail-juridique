@@ -1,14 +1,15 @@
-package fr.artefrance.daj.ws.test.factory;
+package fr.artefrance.daj.rest.test.factory;
 
 
 import fr.artefrance.daj.domain.rightholder.RightHolderRole;
-import fr.artefrance.daj.domain.statement.Program;
 import fr.artefrance.daj.domain.statement.StatementRightHolder;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 public class StatementRightHolderFactory {
 
@@ -37,9 +38,9 @@ public class StatementRightHolderFactory {
         return createOneStatementRightHolderWithOneRightHolderRole(index);
     }
 
-    public static List<StatementRightHolder> createSomeStatementRightHolderWithOneRightHolderRole(int number) {
+    public static Set<StatementRightHolder> createSomeStatementRightHolderWithOneRightHolderRole(int number) {
         return IntStream.range(0, number)
                         .mapToObj(StatementRightHolderFactory::createOneStatementRightHolderWithOneRightHolderRole)
-                        .collect(toList());
+                        .collect(toSet());
     }
 }

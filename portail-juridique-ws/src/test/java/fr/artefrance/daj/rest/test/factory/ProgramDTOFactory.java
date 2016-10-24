@@ -1,7 +1,7 @@
-package fr.artefrance.daj.ws.test.factory;
+package fr.artefrance.daj.rest.test.factory;
 
 
-import fr.artefrance.daj.ws.rest.dto.ProgramDTO;
+import fr.artefrance.daj.rest.dto.ProgramDTO;
 
 import java.util.Date;
 import java.util.List;

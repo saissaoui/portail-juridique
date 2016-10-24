@@ -19,8 +19,6 @@ public interface StatementService {
 
     void addArtworkToStatement(Long statementId, Artwork artwork);
 
-    Statement findOneWithFullDataById(Long statementId);
-
     Statement validateStatement(Statement statement);
 
     List<Statement> findAllProducerStatements();

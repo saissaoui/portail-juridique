@@ -1,4 +1,4 @@
-package fr.artefrance.daj.ws.rest.dto;
+package fr.artefrance.daj.rest.dto;
 
 
 import java.util.Date;

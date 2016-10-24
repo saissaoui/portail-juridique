@@ -1,4 +1,4 @@
-package fr.artefrance.daj.ws.test.factory;
+package fr.artefrance.daj.rest.test.factory;
 
 
 import fr.artefrance.daj.domain.rightholder.RightHolderRole;

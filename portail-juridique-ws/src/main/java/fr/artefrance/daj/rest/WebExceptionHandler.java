@@ -1,4 +1,4 @@
-package fr.artefrance.daj.ws.rest;
+package fr.artefrance.daj.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

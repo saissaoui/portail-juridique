@@ -3,7 +3,7 @@ package fr.artefrance.daj.domain.statement;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PROGRAM")
+@Table(name = "program")
 public class Program {
 
     @Id
@@ -36,7 +36,7 @@ public class Program {
     private String arteEmNumber;
 
     @ManyToOne
-    @JoinColumn(name = "genre_code", insertable = false, updatable = false)
+    @JoinColumn(name = "genre_code")
     private ArtGenre genre;
 
     @Column(name = "isan")
@@ -130,4 +130,20 @@ public class Program {
         this.isan = isan;
     }
 
+    @Override
+    public String toString() {
+        return "Program{" +
+                "id=" + id +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", originalSubTitle='" + originalSubTitle + '\'' +
+                ", contractualTitle='" + contractualTitle + '\'' +
+                ", contractualSubTitle='" + contractualSubTitle + '\'' +
+                ", productionYear=" + productionYear +
+                ", episodeNumber=" + episodeNumber +
+                ", duration=" + duration +
+                ", arteEmNumber='" + arteEmNumber + '\'' +
+                ", genre=" + genre +
+                ", isan='" + isan + '\'' +
+                '}';
+    }
 }
