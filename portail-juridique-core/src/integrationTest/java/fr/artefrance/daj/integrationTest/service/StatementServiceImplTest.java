@@ -73,7 +73,7 @@ public class StatementServiceImplTest {
         statementService.addRightHolderToStatement(statement.getId(), rightHolder);
 
         //THEN
-        statement = statementService.findOneById(statement.getId());
+        statement = statementService.findStatementById(statement.getId());
         Set<StatementRightHolder> rightHolders = new LinkedHashSet<>(statement.getRightHolders());
         assertThat(rightHolders).isNotEmpty();
         assertThat(rightHolders.iterator().next()).isNotNull();
@@ -95,7 +95,7 @@ public class StatementServiceImplTest {
         statementService.addArtworkToStatement(statement.getId(), artwork);
 
         //THEN
-        statement = statementService.findOneById(statement.getId());
+        statement = statementService.findStatementById(statement.getId());
         HashSet<Artwork> artworks = new HashSet<>(statement.getArtworks());
         assertThat(artworks).isNotEmpty();
         assertThat(artworks.iterator().next()).isNotNull();
@@ -139,7 +139,7 @@ public class StatementServiceImplTest {
 
         //THEN
 
-        assertThat(statementService.findOneById(statement.getId()).getStatus()).isEqualTo(StatementStatus.VALID);
+        assertThat(statementService.findStatementById(statement.getId()).getStatus()).isEqualTo(StatementStatus.VALID);
 
     }
 

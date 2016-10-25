@@ -1,7 +1,10 @@
 package fr.artefrance.daj.rest;
 
 import fr.artefrance.daj.domain.statement.Statement;
+import fr.artefrance.daj.service.security.AuthenticationService;
 import fr.artefrance.daj.service.statement.StatementService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,10 +22,13 @@ import static javax.ws.rs.core.Response.Status.*;
 public class StatementResource {
 
     private StatementService statementService;
+    private AuthenticationService authenticationService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebExceptionHandler.class);
 
     @Autowired
-    public StatementResource(StatementService statementService) {
+    public StatementResource(StatementService statementService, AuthenticationService authenticationService) {
         this.statementService = statementService;
+        this.authenticationService = authenticationService;
     }
 
     @GET
@@ -30,7 +36,7 @@ public class StatementResource {
     public Response producerStatements() {
 
         List<Statement> statements = this.statementService.findAllProducerStatements();
-        System.out.println("statements = " + statements);
+        LOGGER.info("statements = " + statements);
 
         return Response.status(OK)
                        .entity(statements)
@@ -38,11 +44,24 @@ public class StatementResource {
     }
 
     @GET
-    @Path("/{statement_id}")
-    public Response statement(@PathParam("statement_id") int statement_id) {
+    @Path("/archived")
+    public Response producerArchivedStatements() {
 
-        Statement statement = this.statementService.findOneById((long) statement_id);
-        System.out.println("statement = " + statement);
+        List<Statement> producerArchivedStatements = this.statementService.findArchivedStatementsByProducerId(
+                this.authenticationService.getCurrentUser().getId());
+        LOGGER.info("producerArchivedStatements = " + producerArchivedStatements);
+
+        return Response.status(OK)
+                       .entity(producerArchivedStatements)
+                       .build();
+    }
+
+    @GET
+    @Path("/{statementId}")
+    public Response statement(@PathParam("statementId") int statementId) {
+
+        Statement statement = this.statementService.findStatementById((long) statementId);
+        LOGGER.info("statement = " + statement);
 
         return Response.status(OK)
                        .entity(statement)
@@ -50,27 +69,40 @@ public class StatementResource {
     }
 
     @PUT
-    @Path("{statement_id}/validate")
+    @Path("{statementId}/update")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response validateStatement(Statement statement) {
+    public Response updateStatement(Statement statement) {
 
-        Statement updatedStatement = this.statementService.validateStatement(statement);
-        System.out.println("updatedStatement = " + updatedStatement);
+        Statement updatedStatement = this.statementService.updateStatement(statement);
+        LOGGER.info("updatedStatement = " + updatedStatement);
 
         return Response.status(OK)
                        .entity(updatedStatement)
                        .build();
     }
 
-    @DELETE
-    @Path("{statement_id}/delete")
+    @PUT
+    @Path("{statementId}/validate")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response deleteStatement(@PathParam("statement_id") int statement_id) {
+    public Response validateStatement(Statement statement) {
 
-        this.statementService.findOneById(1L);
+        Statement validatedStatement = this.statementService.validateStatement(statement);
+        LOGGER.info("validatedStatement = " + validatedStatement);
+
+        return Response.status(OK)
+                       .entity(validatedStatement)
+                       .build();
+    }
+
+    @DELETE
+    @Path("{statementId}/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteStatement(@PathParam("statementId") int statementId) {
+
+        this.statementService.findStatementById(1L);
 
         return Response.status(NO_CONTENT)
-                       .header(HttpHeaders.LOCATION, statement_id)
+                       .header(HttpHeaders.LOCATION, statementId)
                        .build();
     }
 
@@ -80,11 +112,10 @@ public class StatementResource {
     public Response createStatement(Statement statement) {
 
         Statement createdStatement = this.statementService.create(statement);
-        System.out.println("createdStatement = " + createdStatement);
+        LOGGER.info("createdStatement = " + createdStatement);
         return Response.status(CREATED)
                        .header(HttpHeaders.LOCATION, "statements/" + createdStatement.getId())
                        .build();
     }
-
 
 }

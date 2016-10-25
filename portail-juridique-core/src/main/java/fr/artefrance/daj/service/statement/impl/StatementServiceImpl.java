@@ -21,7 +21,7 @@ public class StatementServiceImpl implements StatementService {
     StatementRepository statementRepository;
 
     @Override
-    public Statement findOneById(Long statementId) {
+    public Statement findStatementById(Long statementId) {
         return statementRepository.findOne(statementId);
     }
 
@@ -32,14 +32,12 @@ public class StatementServiceImpl implements StatementService {
 
     @Override
     public void addRightHolderToStatement(Long statementId, StatementRightHolder rightHolder) {
-
         Statement statement = statementRepository.getOne(statementId);
         statement.addStatementRightHolder(rightHolder);
     }
 
     @Override
     public void addArtworkToStatement(Long statementId, Artwork artwork) {
-
         Statement statement = statementRepository.getOne(statementId);
         statement.addArtwork(artwork);
     }
@@ -50,6 +48,11 @@ public class StatementServiceImpl implements StatementService {
         statement.setStatus(StatementStatus.VALID);
         return statementRepository.save(statement);
 
+    }
+
+    @Override
+    public Statement updateStatement(Statement statement) {
+        return statementRepository.save(statement);
     }
 
     @Override
@@ -64,7 +67,7 @@ public class StatementServiceImpl implements StatementService {
 
     /**
      * Verifie si un objet {@link Statement} peut être passé au statut validé
-     * @param statement
+     * @param statement l'objet relevé à vérifier
      */
     private void checkForValidation(Statement statement) {
         Assert.notNull(statement);
