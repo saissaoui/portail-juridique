@@ -6,14 +6,11 @@ import fr.artefrance.daj.domain.statement.StatementStatus;
 import fr.artefrance.daj.domain.statement.artwork.Artwork;
 import fr.artefrance.daj.repository.statement.StatementRepository;
 import fr.artefrance.daj.service.statement.StatementService;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,8 +21,7 @@ public class StatementServiceImpl implements StatementService {
     StatementRepository statementRepository;
 
     @Override
-    public Statement findOneById(Long statementId) {
-
+    public Statement findStatementById(Long statementId) {
         return statementRepository.findOne(statementId);
     }
 
@@ -36,36 +32,14 @@ public class StatementServiceImpl implements StatementService {
 
     @Override
     public void addRightHolderToStatement(Long statementId, StatementRightHolder rightHolder) {
-
         Statement statement = statementRepository.getOne(statementId);
-
-        if (CollectionUtils.isEmpty(statement.getRightHolders()))
-            statement.setRightHolders(new ArrayList());
-
-        statement.getRightHolders().add(rightHolder);
-
-        statementRepository.save(statement);
+        statement.addStatementRightHolder(rightHolder);
     }
 
     @Override
     public void addArtworkToStatement(Long statementId, Artwork artwork) {
-
         Statement statement = statementRepository.getOne(statementId);
-        if (CollectionUtils.isEmpty(statement.getArtworks()))
-            statement.setArtworks(new ArrayList());
-
-        statement.getArtworks().add(artwork);
-
-        statementRepository.save(statement);
-    }
-
-    @Override
-    public Statement findOneWithFullDataById(Long statementId) {
-
-        Statement statement = statementRepository.findOne(statementId);
-        Hibernate.initialize(statement.getArtworks());
-        Hibernate.initialize(statement.getRightHolders());
-        return statement;
+        statement.addArtwork(artwork);
     }
 
     @Override
@@ -74,6 +48,11 @@ public class StatementServiceImpl implements StatementService {
         statement.setStatus(StatementStatus.VALID);
         return statementRepository.save(statement);
 
+    }
+
+    @Override
+    public Statement updateStatement(Statement statement) {
+        return statementRepository.save(statement);
     }
 
     @Override
@@ -88,7 +67,7 @@ public class StatementServiceImpl implements StatementService {
 
     /**
      * Verifie si un objet {@link Statement} peut être passé au statut validé
-     * @param statement
+     * @param statement l'objet relevé à vérifier
      */
     private void checkForValidation(Statement statement) {
         Assert.notNull(statement);

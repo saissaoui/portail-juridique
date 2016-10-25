@@ -5,13 +5,13 @@ import fr.artefrance.daj.domain.statement.ArtGenre;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Objet métier representant une Oeuvre
  */
 @Entity
-@Table(name = "ARTWORK")
+@Table(name = "artwork")
 public class Artwork {
 
     @Id
@@ -30,20 +30,23 @@ public class Artwork {
     @Enumerated(EnumType.STRING)
     private ArtworkMusicType musicType;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "artwork_id")
-    private List<ArtworkTimeCode> timeCodes;
+    private Set<ArtworkTimeCode> timeCodes;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "artwork_id")
-    private List<ArtworkRightHolder> rightHolders;
+    private Set<ArtworkRightHolder> rightHolders;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "record_support_id")
     private RecordSupport recordSupport;
 
+    @Column(name = "statement_id")
+    private Long statementId;
 
-    public Artwork() {}
+    public Artwork() {
+    }
 
     public Artwork(String title, ArtGenre genre) {
         Assert.notNull(title, "Artwork.title is required");
@@ -77,19 +80,19 @@ public class Artwork {
         this.musicType = musicType;
     }
 
-    public List<ArtworkTimeCode> getTimeCodes() {
+    public Set<ArtworkTimeCode> getTimeCodes() {
         return timeCodes;
     }
 
-    public void setTimeCodes(List<ArtworkTimeCode> timeCodes) {
+    public void setTimeCodes(Set<ArtworkTimeCode> timeCodes) {
         this.timeCodes = timeCodes;
     }
 
-    public List<ArtworkRightHolder> getRightHolders() {
+    public Set<ArtworkRightHolder> getRightHolders() {
         return rightHolders;
     }
 
-    public void setRightHolders(List<ArtworkRightHolder> rightHolders) {
+    public void setRightHolders(Set<ArtworkRightHolder> rightHolders) {
         this.rightHolders = rightHolders;
     }
 
@@ -101,4 +104,25 @@ public class Artwork {
         this.recordSupport = recordSupport;
     }
 
+    public Long getStatementId() {
+        return statementId;
+    }
+
+    public void setStatementId(Long statementId) {
+        this.statementId = statementId;
+    }
+
+    @Override
+    public String toString() {
+        return "Artwork{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", genre=" + genre +
+                ", musicType=" + musicType +
+                ", timeCodes=" + timeCodes +
+                ", rightHolders=" + rightHolders +
+                ", recordSupport=" + recordSupport +
+                ", statementId=" + statementId +
+                '}';
+    }
 }

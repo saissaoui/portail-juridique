@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Objet métier representant un support d'enregistrement
  */
 @Entity
-@Table(name = "RECORD_SUPPORT")
+@Table(name = "record_support")
 public class RecordSupport {
 
     @Id
@@ -56,5 +56,16 @@ public class RecordSupport {
 
     public void setSupportIdentifier(RecordSupportIdentifier supportIdentifier) {
         this.supportIdentifier = supportIdentifier;
+    }
+
+    @Override
+    public String toString() {
+        return "RecordSupport{" +
+                "id=" + id +
+                ", producerName='" + producerName + '\'' +
+                ", supportLabel='" + supportLabel + '\'' +
+                ", supportNumber='" + supportNumber + '\'' +
+                ", supportIdentifier=" + supportIdentifier +
+                '}';
     }
 }

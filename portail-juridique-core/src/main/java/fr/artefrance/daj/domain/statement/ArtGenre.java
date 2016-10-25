@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Objet métier reprensentant un genre artistique: court métrage, musique...
  */
 @Entity
-@Table(name = "ART_GENRE")
+@Table(name = "art_genre")
 public class ArtGenre {
 
     @Id
@@ -19,7 +19,8 @@ public class ArtGenre {
     @Column(name = "genre_label")
     private String genreLabel;
 
-    public ArtGenre() {}
+    public ArtGenre() {
+    }
 
     public ArtGenre(String genreCode) {
         this.genreCode = genreCode;

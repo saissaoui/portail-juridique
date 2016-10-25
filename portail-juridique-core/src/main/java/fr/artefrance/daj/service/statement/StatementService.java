@@ -11,7 +11,7 @@ import java.util.List;
  * Service de géstion d'un objet {@link Statement}
  */
 public interface StatementService {
-    Statement findOneById(Long statementId);
+    Statement findStatementById(Long statementId);
 
     Statement create(Statement statement);
 
@@ -19,9 +19,9 @@ public interface StatementService {
 
     void addArtworkToStatement(Long statementId, Artwork artwork);
 
-    Statement findOneWithFullDataById(Long statementId);
-
     Statement validateStatement(Statement statement);
+
+    Statement updateStatement(Statement statement);
 
     List<Statement> findAllProducerStatements();
 

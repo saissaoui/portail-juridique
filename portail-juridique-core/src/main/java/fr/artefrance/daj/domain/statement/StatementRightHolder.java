@@ -18,9 +18,10 @@ public class StatementRightHolder extends RightHolder {
     @Column(name = "partner_id")
     private Long partnerId;
 
+    @Column(name = "statement_id")
+    private Long statementId;
 
     public StatementRightHolder() {
-        super();
     }
 
     public StatementRightHolder(String firstname, String lastname, List<RightHolderRole> roles, Long partnerId) {
@@ -37,4 +38,19 @@ public class StatementRightHolder extends RightHolder {
         this.partnerId = partnerId;
     }
 
+    public Long getStatementId() {
+        return statementId;
+    }
+
+    public void setStatementId(Long statementId) {
+        this.statementId = statementId;
+    }
+
+    @Override
+    public String toString() {
+        return "StatementRightHolder{" +
+                "partnerId=" + partnerId +
+                ", statementId=" + statementId +
+                '}';
+    }
 }

@@ -5,13 +5,12 @@ import fr.artefrance.daj.domain.security.User;
 import fr.artefrance.daj.domain.statement.Program;
 import fr.artefrance.daj.ws.integrationTest.config.IntegrationTestConfig;
 import fr.artefrance.daj.ws.integrationTest.rest.client.ProgramRestServiceFake;
-import fr.artefrance.daj.ws.test.factory.ProgramFactory;
+import fr.artefrance.daj.rest.test.factory.ProgramFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 

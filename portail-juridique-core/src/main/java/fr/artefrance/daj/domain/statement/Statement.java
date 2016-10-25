@@ -5,13 +5,13 @@ import fr.artefrance.daj.domain.statement.artwork.Artwork;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Objet métier reprensentant un relevé de droits d'auteur
  */
 @Entity
-@Table(name = "STATEMENT")
+@Table(name = "statement")
 public class Statement {
 
     @Id
@@ -35,12 +35,12 @@ public class Statement {
     private Date lastActivityDate;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "statement_id")
-    private List<StatementRightHolder> rightHolders;
+    @JoinColumn(name="statement_id")
+    private Set<StatementRightHolder> rightHolders;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "statement_id")
-    private List<Artwork> artworks;
+    @JoinColumn(name="statement_id")
+    private Set<Artwork> artworks;
 
     @Column(name = "has_no_artworks")
     private Boolean hasNoArtworks;
@@ -81,19 +81,19 @@ public class Statement {
         this.lastActivityDate = lastActivityDate;
     }
 
-    public List<StatementRightHolder> getRightHolders() {
+    public Set<StatementRightHolder> getRightHolders() {
         return rightHolders;
     }
 
-    public void setRightHolders(List<StatementRightHolder> rightHolders) {
+    public void setRightHolders(Set<StatementRightHolder> rightHolders) {
         this.rightHolders = rightHolders;
     }
 
-    public List<Artwork> getArtworks() {
+    public Set<Artwork> getArtworks() {
         return artworks;
     }
 
-    public void setArtworks(List<Artwork> artworks) {
+    public void setArtworks(Set<Artwork> artworks) {
         this.artworks = artworks;
     }
 
@@ -111,6 +111,26 @@ public class Statement {
 
     public void setProducerOwnerId(Long producerOwnerId) {
         this.producerOwnerId = producerOwnerId;
+    }
+
+    public void addStatementRightHolder(StatementRightHolder rightHolder) {
+        rightHolders.add(rightHolder);
+        rightHolder.setStatementId(this.id);
+    }
+
+    public void removeStatementRightHolder(StatementRightHolder rightHolder) {
+        rightHolders.add(rightHolder);
+        rightHolder.setStatementId(this.id);
+    }
+
+    public void addArtwork(Artwork artwork) {
+        artworks.add(artwork);
+        artwork.setStatementId(this.id);
+    }
+
+    public void removeArtwork(Artwork artwork) {
+        artworks.add(artwork);
+        artwork.setStatementId(this.id);
     }
 
     @Override
