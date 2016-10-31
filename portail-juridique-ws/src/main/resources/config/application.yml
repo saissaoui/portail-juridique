@@ -1,13 +1,18 @@
+#Spring boot server config: application url
+server:
+  contextPath: /daj-ws
+
+#Basic Spring Boot Config for Oracle
+oracle:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@ora-7:1521:DEV
+    username: daj
+    password: root
+
+
 portail-juridique:
   sophia:
     ws-url: http://localhost:8080/get_producer_programs
     producer-programs-service: /get_producer_programs
-#spring:
-#  datasource:
-#    driver-class-name: org.h2.Driver
-#    url: jdbc:h2:./target/data/portail;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-#    username: sa
-#    password:
 
-#Spring boot server config: application url
-server.contextPath = /daj-ws
+
