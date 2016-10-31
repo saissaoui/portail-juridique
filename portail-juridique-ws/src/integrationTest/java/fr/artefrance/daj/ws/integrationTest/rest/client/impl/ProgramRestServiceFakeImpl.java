@@ -19,7 +19,7 @@ public class ProgramRestServiceFakeImpl implements ProgramRestServiceFake {
                                                       );
 
     @Override
-    public List<Program> getProducerProgramsFromSophia(User producer) throws IOException {
+    public List<Program> getProducerProgramsFromSophia(Long id) throws IOException {
         if(authorizedURI.contains(this.url)) {
             return this.programs;
         } else {

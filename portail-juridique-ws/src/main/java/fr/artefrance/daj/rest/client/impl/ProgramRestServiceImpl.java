@@ -24,7 +24,7 @@ public class ProgramRestServiceImpl implements ProgramRestService {
     JerseyClient jerseyClient;
 
     @Override
-    public List<Program> getProducerProgramsFromSophia(User producer) throws IOException {
+    public List<Program> getProducerProgramsFromSophia(Long id) throws IOException {
 
         return jerseyClient.target(SOPHIA_WS_URL)
                            .path(SOPHIA_WS_PRODUCER_PROGRAMS_SERVICE)

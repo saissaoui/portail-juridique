@@ -40,14 +40,14 @@ public class ProgramRestServiceTest {
     @Test
     public void call_ws_with_right_resource_url() throws IOException {
         programRestServiceFake.setUrl(SOPHIA_WS_PRODUCER_PROGRAMS_SERVICE);
-        List<Program> programs = programRestServiceFake.getProducerProgramsFromSophia(user);
+        List<Program> programs = programRestServiceFake.getProducerProgramsFromSophia(user.getId());
         assertThat(programs).isNotNull();
     }
 
     @Test(expected = IOException.class)
     public void call_ws_with_wrong_resource_url() throws IOException {
         programRestServiceFake.setUrl(ANOTHER_WRONG_WS_SERVICE);
-        List<Program> programs = programRestServiceFake.getProducerProgramsFromSophia(user);
+        List<Program> programs = programRestServiceFake.getProducerProgramsFromSophia(user.getId());
         assertThat(programs).isNotNull();
     }
 }

@@ -1,4 +1,4 @@
-package fr.artefrance.daj.rest;
+package fr.artefrance.daj.rest.resources;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +15,9 @@ import static javax.ws.rs.core.Response.Status.*;
 
 @ControllerAdvice
 @Order
-class WebExceptionHandler {
+class WebResourceExceptionHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebExceptionHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebResourceExceptionHandler.class);
 
     @ExceptionHandler({IllegalArgumentException.class, HttpMessageNotReadableException.class})
     public Response defaultErrorHandler(IllegalArgumentException e) {
