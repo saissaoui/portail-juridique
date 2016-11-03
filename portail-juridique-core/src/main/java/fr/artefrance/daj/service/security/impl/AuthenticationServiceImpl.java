@@ -3,7 +3,11 @@ package fr.artefrance.daj.service.security.impl;
 
 import fr.artefrance.daj.domain.security.User;
 import fr.artefrance.daj.service.security.AuthenticationService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@Transactional
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
