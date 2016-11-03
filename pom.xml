@@ -105,6 +105,13 @@
             <version>1.7.21</version>
         </dependency>
 
+        <!--ojdbc-->
+        <dependency>
+            <groupId>oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>
