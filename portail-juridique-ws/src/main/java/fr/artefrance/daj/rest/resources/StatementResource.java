@@ -1,4 +1,4 @@
-package fr.artefrance.daj.rest;
+package fr.artefrance.daj.rest.resources;
 
 import fr.artefrance.daj.domain.statement.Statement;
 import fr.artefrance.daj.service.security.AuthenticationService;
@@ -23,7 +23,7 @@ public class StatementResource {
 
     private StatementService statementService;
     private AuthenticationService authenticationService;
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebExceptionHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebResourceExceptionHandler.class);
 
     @Autowired
     public StatementResource(StatementService statementService, AuthenticationService authenticationService) {

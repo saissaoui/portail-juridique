@@ -18,7 +18,8 @@ public abstract class RightHolder {
 
     @Id
     @Column(name = "right_holder_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator( name = "dajIdSequ", sequenceName = "DAJ_ID_SEQU", allocationSize = 1 )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dajIdSequ")
     private Long id;
 
     @Column

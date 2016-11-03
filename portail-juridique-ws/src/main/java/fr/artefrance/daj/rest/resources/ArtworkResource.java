@@ -1,4 +1,4 @@
-package fr.artefrance.daj.rest;
+package fr.artefrance.daj.rest.resources;
 
 
 import fr.artefrance.daj.domain.statement.artwork.Artwork;
@@ -22,7 +22,7 @@ import static javax.ws.rs.core.Response.Status.OK;
 public class ArtworkResource {
 
     private ArtworkService artworkService;
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebExceptionHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebResourceExceptionHandler.class);
 
     @Autowired
     public ArtworkResource(ArtworkService artworkService) {
