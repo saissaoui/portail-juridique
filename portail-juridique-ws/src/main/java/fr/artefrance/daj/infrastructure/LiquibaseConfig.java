@@ -1,3 +1,4 @@
+/*
 package fr.artefrance.daj.infrastructure;
 
 
@@ -24,3 +25,4 @@ public class LiquibaseConfig {
         return liquibase;
     }
 }
+*/
