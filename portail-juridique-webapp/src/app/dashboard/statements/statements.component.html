@@ -1,0 +1,12 @@
+<fieldset>
+  <legend><h3>Mes relevés de droits d'auteurs</h3></legend>
+
+  <div *ngIf="statements" class="grid grid-pad">
+    <div *ngFor="let statement of statements">
+        <a [routerLink]="['/statement',statement.id]">{{statement.program.contractualTitle}}</a>
+    </div>
+  </div>
+  <div *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+</fieldset>
