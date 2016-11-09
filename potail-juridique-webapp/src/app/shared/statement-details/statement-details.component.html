@@ -3,7 +3,7 @@
     <h1>RELEVE DE DROITS D'AUTEURS: {{statement.id}}</h1>
     <button>Valider le relevé</button>
     <button>Enregistrer</button>
-    <button (click)="goBack()">Annuler</button>
+    <button [routerLink]="['/dashboard']" routerLinkActive="active">Annuler</button>
   </header>
   <section>
     <label>Statut du relevé:</label> {{statement.status}}

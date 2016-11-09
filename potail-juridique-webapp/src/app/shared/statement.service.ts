@@ -3,11 +3,12 @@ import {Http, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {Statement} from "./statement.model";
 import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class StatementService {
-  private statementsUrl = "http://localhost:8080/daj-ws/statements";
-  private statementDetailsUrl = "http://localhost:8080/daj-ws/statements/";
+  private statementsUrl = environment.restUrlBase+"statements";
+  private statementDetailsUrl = environment.restUrlBase+"statements/";
 
   constructor(private http: Http) {
   }
