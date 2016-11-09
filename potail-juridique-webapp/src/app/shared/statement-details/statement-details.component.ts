@@ -1,12 +1,12 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Location} from "@angular/common";
-import {Statement} from "../model/statement";
-import {StatementService} from "../services/statement.service";
+import {Statement} from "../statement.model";
+import {StatementService} from "../statement.service";
 
 @Component({
   selector: 'statement-details',
-  templateUrl: '../views/statement-details.component.html'
+  templateUrl: './statement-details.component.html'
 })
 export class StatementDetailsComponent implements OnInit {
 

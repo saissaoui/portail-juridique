@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Statement} from "../model/statement";
-import {StatementService} from "../services/statement.service";
+import {StatementService} from "../../shared/statement.service";
+import {Statement} from "../../shared/statement.model";
 
 @Component({
   selector: 'statements-list',
-  templateUrl: '../views/statements.component.html'
+  templateUrl: './statements.component.html'
 
 })
 export class StatementsComponent implements OnInit {

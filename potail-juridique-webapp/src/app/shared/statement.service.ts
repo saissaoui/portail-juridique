@@ -1,29 +1,8 @@
 import {Injectable} from "@angular/core";
-import {Headers, Http, Response} from '@angular/http';
-
-import 'rxjs/add/operator/toPromise';
-import {Statement} from "../model/statement";
+import {Http, Response} from "@angular/http";
+import "rxjs/add/operator/toPromise";
+import {Statement} from "./statement.model";
 import {Observable} from "rxjs";
-
-const statements: Statement[] = [
-  {
-    'id': 2,
-    'title': 'statement 1',
-    'lastActivityDate': '04/11/2016',
-    'status': 'PENDING',
-    producerOwnerId: null,
-    hasNoArtworks: false
-  },
-  {
-    'id': 2,
-    'title': 'statement 2',
-    'lastActivityDate': '04/11/2016',
-    'status': 'PENDING',
-    producerOwnerId: null,
-    hasNoArtworks: false
-  }
-];
-
 
 @Injectable()
 export class StatementService {
@@ -35,21 +14,21 @@ export class StatementService {
 
   getStatements(): Observable<Statement[]> {
     return this.http.get(this.statementsUrl)
-     .map(this.extractData)
-     .catch(this.handleError);
-  }
-
-  getStatement(id: number): Observable<Statement> {
-    return this.http.get(this.statementDetailsUrl+id)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  private extractData(res: Response)
-  {
-    let body = res.json();
-    return body || { };
+  getStatement(id: number): Observable<Statement> {
+    return this.http.get(this.statementDetailsUrl + id)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || {};
+  }
+
   private handleError(error: any): Observable<any> {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
