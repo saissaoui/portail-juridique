@@ -9,6 +9,9 @@
     <label>Statut du relevé:</label> {{statement.status}}
     <label>Dernière activité:</label> {{statement.lastActivityDate}}
   </section>
+  <section>
+    <button [routerLink]="['right_holder/new']" routerLinkActive="active">Ajouter un ayant droit</button>
+  </section>
 </div>
 <div *ngIf="errorMessage">
   {{errorMessage}}

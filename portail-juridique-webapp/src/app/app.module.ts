@@ -3,16 +3,18 @@ import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {AppComponent} from "./app.component";
 import {HttpModule} from "@angular/http";
-import {StatementDetailsComponent} from "./shared/statement-details/statement-details.component";
+import {StatementDetailsComponent} from "./statement-details/statement-details.component";
 import {PotailJuridiqueWebappRoutingModule} from "./app-routing.module";
 import {StatementService} from "./shared/statement.service";
 import {DashboardModule} from "./dashboard/dashboard.module";
+import { RightHolderComponent } from './statement-details/right-holder/right-holder.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StatementDetailsComponent
+    StatementDetailsComponent,
+    RightHolderComponent
   ],
   imports: [
     BrowserModule,

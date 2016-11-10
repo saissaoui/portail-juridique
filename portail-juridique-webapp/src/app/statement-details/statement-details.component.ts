@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Location} from "@angular/common";
-import {Statement} from "../statement.model";
-import {StatementService} from "../statement.service";
+import {StatementService} from "../shared/statement.service";
+import {Statement} from "../shared/statement.model";
 
 @Component({
   selector: 'statement-details',
