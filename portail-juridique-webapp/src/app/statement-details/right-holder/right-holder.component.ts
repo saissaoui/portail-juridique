@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RightholderRole} from "./right-holder-role.model";
+import {RightHolderService} from "./right-holder.service";
 
 @Component({
   selector: 'app-right-holder',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RightHolderComponent implements OnInit {
 
-  constructor() { }
+  roles: RightholderRole[];
+  errorMessage:string;
+
+  constructor(private rightHolderService: RightHolderService)
+  {}
+
 
   ngOnInit() {
+    this.initRolesList();
+  }
+
+  private initRolesList(): void {
+    this.rightHolderService.getAvailableRoles().subscribe(
+      roles => this.roles = roles,
+      error => this.errorMessage = <any>error
+    )
+
   }
 
 }

@@ -8,22 +8,24 @@ import {PotailJuridiqueWebappRoutingModule} from "./app-routing.module";
 import {StatementService} from "./shared/statement.service";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import { RightHolderComponent } from './statement-details/right-holder/right-holder.component';
+import {StatementDetailsModule} from "./statement-details/statement-details.module";
+import {RightHolderService} from "./statement-details/right-holder/right-holder.service";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StatementDetailsComponent,
     RightHolderComponent
   ],
   imports: [
     BrowserModule,
     DashboardModule,
+    StatementDetailsModule,
     FormsModule,
     PotailJuridiqueWebappRoutingModule,
     HttpModule
   ],
-  providers: [StatementService],
+  providers: [StatementService,RightHolderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

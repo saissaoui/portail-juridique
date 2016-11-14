@@ -3,11 +3,11 @@
 
   <section>
     <label>Rechercher un ayant droit</label><br>
-    <input type="text">
+    <input type="text" name="searchText">
   </section>
   <section>
     <label>Nom</label><br>
-    <input type="text">
+    <input type="text" name="name">
   </section>
   <section>
     <label>Prenom</label><br>
@@ -16,7 +16,7 @@
   <section>
     <label>Rôle</label><br>
     <select>
-
+      <option *ngFor="let role of roles" value="{{role.roleCode}}">{{role.roleLabel}}</option>
     </select>
   </section>
   <section>

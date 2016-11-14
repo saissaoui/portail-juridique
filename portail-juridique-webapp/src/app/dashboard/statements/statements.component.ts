@@ -18,7 +18,6 @@ export class StatementsComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.getStatements();
   }
 
