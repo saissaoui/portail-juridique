@@ -1,5 +1,8 @@
 package fr.artefrance.daj.domain.statement;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.artefrance.daj.domain.View;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,32 +11,41 @@ public class Program {
 
     @Id
     @Column(name = "program_id")
-    @SequenceGenerator( name = "dajIdSequ", sequenceName = "DAJ_ID_SEQU", allocationSize = 1 )
+    @SequenceGenerator(name = "dajIdSequ", sequenceName = "DAJ_ID_SEQU", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dajIdSequ")
+    @JsonView(View.Summary.class)
     private Long id;
 
     @Column(name = "original_title")
+    @JsonView(View.Summary.class)
     private String originalTitle;
 
     @Column(name = "original_subtitle")
+    @JsonView(View.Summary.class)
     private String originalSubTitle;
 
     @Column(name = "contractual_title")
+    @JsonView(View.Summary.class)
     private String contractualTitle;
 
     @Column(name = "contractual_subtitle")
+    @JsonView(View.Summary.class)
     private String contractualSubTitle;
 
     @Column(name = "production_year")
+    @JsonView(View.Summary.class)
     private int productionYear;
 
     @Column(name = "episode_number")
+    @JsonView(View.Summary.class)
     private int episodeNumber;
 
     @Column(name = "duration")
+    @JsonView(View.Summary.class)
     private Long duration;
 
     @Column(name = "arte_em_number")
+    @JsonView(View.Summary.class)
     private String arteEmNumber;
 
     @ManyToOne
@@ -41,6 +53,7 @@ public class Program {
     private ArtGenre genre;
 
     @Column(name = "isan")
+    @JsonView(View.Summary.class)
     private String isan;
 
     public Long getId() {

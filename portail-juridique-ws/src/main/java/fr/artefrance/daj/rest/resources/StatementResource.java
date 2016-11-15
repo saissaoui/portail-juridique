@@ -1,5 +1,7 @@
 package fr.artefrance.daj.rest.resources;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.artefrance.daj.domain.View;
 import fr.artefrance.daj.domain.statement.Statement;
 import fr.artefrance.daj.service.security.AuthenticationService;
 import fr.artefrance.daj.service.statement.StatementService;
@@ -33,6 +35,7 @@ public class StatementResource {
 
     @GET
     @Path("/")
+    @JsonView(View.Summary.class)
     public Response producerStatements() {
 
         List<Statement> statements = this.statementService.findAllProducerStatements();
@@ -58,6 +61,7 @@ public class StatementResource {
 
     @GET
     @Path("/{statementId}")
+    @JsonView(View.Details.class)
     public Response statement(@PathParam("statementId") int statementId) {
 
         Statement statement = this.statementService.findStatementById((long) statementId);

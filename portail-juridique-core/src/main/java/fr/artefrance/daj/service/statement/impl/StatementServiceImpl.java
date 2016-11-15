@@ -31,9 +31,11 @@ public class StatementServiceImpl implements StatementService {
     }
 
     @Override
-    public void addRightHolderToStatement(Long statementId, StatementRightHolder rightHolder) {
+    public StatementRightHolder addRightHolderToStatement(Long statementId, StatementRightHolder rightHolder) {
         Statement statement = statementRepository.getOne(statementId);
         statement.addStatementRightHolder(rightHolder);
+        statementRepository.save(statement);
+        return rightHolder;
     }
 
     @Override

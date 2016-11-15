@@ -15,7 +15,7 @@ public interface StatementService {
 
     Statement create(Statement statement);
 
-    void addRightHolderToStatement(Long statementId, StatementRightHolder rightHolder);
+    StatementRightHolder addRightHolderToStatement(Long statementId, StatementRightHolder rightHolder);
 
     void addArtworkToStatement(Long statementId, Artwork artwork);
 
