@@ -32,8 +32,7 @@ public class RightholderResourse {
 
 
     @POST
-    @Path("/new")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("")
     public Response addRightholderToStatement(StatementRightHolder rightHolder) {
         StatementRightHolder addedRightHolder = this.statementService.addRightHolderToStatement(rightHolder.getStatementId(), rightHolder);
 

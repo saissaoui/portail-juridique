@@ -7,7 +7,7 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 /**
- *
+ *filter d'ajout de headers CORS
  */
 @Provider
 public class CORSFilter implements ContainerResponseFilter {
@@ -15,5 +15,9 @@ public class CORSFilter implements ContainerResponseFilter {
     public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext
             containerResponseContext) throws IOException {
         containerResponseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
+        containerResponseContext.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+        containerResponseContext.getHeaders().add("Accept", "*");
+        containerResponseContext.getHeaders().add("Access-Control-Allow-Headers", "content-type");
+
     }
 }

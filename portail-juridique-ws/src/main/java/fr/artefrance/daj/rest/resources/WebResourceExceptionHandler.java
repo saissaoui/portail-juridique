@@ -25,7 +25,7 @@ class WebResourceExceptionHandler {
                 "Wrong arguments given to request",
                 e);
         return Response.status(BAD_REQUEST)
-                              .build();
+                       .build();
     }
 
     @ExceptionHandler(URISyntaxException.class)

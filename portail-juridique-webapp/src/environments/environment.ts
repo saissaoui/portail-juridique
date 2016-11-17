@@ -5,5 +5,10 @@
 
 export const environment = {
   production: false,
-  restUrlBase: "http://localhost:8080/daj-ws/"
+  restUrlBase: "http://localhost:8080/daj-ws/",
+  config: {
+    apiUrl: 'localhost:8080/daj-ws',
+    apiPort: '8080',
+    scheme: 'http'
+  }
 };

@@ -4,14 +4,15 @@
   <section>
     <label>Rechercher un ayant droit</label><br>
     <input type="text" name="searchText">
+    <input type="hidden" [(ngModel)]="rightHolder.partnerId" value="5" name="partnerId">
   </section>
   <section>
     <label>Nom</label><br>
-    <input type="text" name="name">
+    <input [(ngModel)]="rightHolder.lastname" type="text" name="name">
   </section>
   <section>
     <label>Prenom</label><br>
-    <input type="text">
+    <input [(ngModel)]="rightHolder.firstname" type="text">
   </section>
   <section>
     <label>Rôle</label><br>
@@ -20,8 +21,8 @@
     </select>
   </section>
   <section>
-    <button>Enregistrer</button>
-    <button>Annuler</button>
+    <button (click)="addRightHolderToStatement()" >Enregistrer</button>
+    <button [routerLink]="['/statement',statementId]" routerLinkActive="active">Annuler</button>
   </section>
 
 

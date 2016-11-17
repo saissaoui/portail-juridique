@@ -10,6 +10,9 @@ import {DashboardModule} from "./dashboard/dashboard.module";
 import { RightHolderComponent } from './statement-details/right-holder/right-holder.component';
 import {StatementDetailsModule} from "./statement-details/statement-details.module";
 import {RightHolderService} from "./statement-details/right-holder/right-holder.service";
+import {WsClient} from "./shared/ws-client";
+import {APP_CONFIG} from "./shared/app-config";
+import {environment} from "../environments/environment";
 
 
 @NgModule({
@@ -25,7 +28,7 @@ import {RightHolderService} from "./statement-details/right-holder/right-holder.
     PotailJuridiqueWebappRoutingModule,
     HttpModule
   ],
-  providers: [StatementService,RightHolderService],
+  providers: [StatementService,RightHolderService,WsClient, {provide: APP_CONFIG, useValue: environment.config}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
