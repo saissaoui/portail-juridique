@@ -11,8 +11,10 @@ oracle:
 
 
 portail-juridique:
+  web-client-domain: http://localhost:4200
   sophia:
     ws-url: http://localhost:8080/get_producer_programs
     producer-programs-service: /get_producer_programs
+
 
 
