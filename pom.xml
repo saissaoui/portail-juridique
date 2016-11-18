@@ -17,6 +17,30 @@
         <version>1.4.1.RELEASE</version>
     </parent>
 
+    <profiles>
+        <profile>
+            <id>dev-local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profile.name>dev-local</profile.name>
+
+                <oracle.datasource.url>jdbc:oracle:thin:@ora-7:1521:DEV</oracle.datasource.url>
+                <oracle.datasource.user>daj</oracle.datasource.user>
+                <oracle.datasource.password>root</oracle.datasource.password>
+                <ws.host>localhost</ws.host>
+                <ws.port>8080</ws.port>
+                <ws.host.ext>localhost</ws.host.ext>
+                <ws.port.ext>8080</ws.port.ext>
+                <web-client.domain>http://localhost:4200</web-client.domain>
+                <sophia.ws.url></sophia.ws.url>
+
+            </properties>
+
+        </profile>
+    </profiles>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

@@ -19,7 +19,6 @@ public class DatabaseConfig {
     private String password;
     private String url;
 
-
     public String getUsername() {
         return username;
     }
