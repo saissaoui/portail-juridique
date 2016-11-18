@@ -12,10 +12,10 @@ public interface StatementRepository extends JpaRepository<Statement, Long> {
     @Query("SELECT DISTINCT s FROM Statement s WHERE s.producerOwnerId = ?1 AND s.status = 'VALID'")
     List<Statement> findArchivedStatementsByProducerId(Long producerId);
 
-    @EntityGraph(attributePaths = {"rightHolders", "artworks"}, type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(attributePaths = {"rightHolders.roles", "artworks"})
     @Query("SELECT DISTINCT s FROM Statement s ")
     List<Statement> findAll();
 
-    @EntityGraph(attributePaths = {"rightHolders", "artworks"}, type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(attributePaths = {"rightHolders", "artworks"})
     Statement findOne(Long statementId);
 }

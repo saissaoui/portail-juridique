@@ -9,8 +9,10 @@ import {DashboardRoutingModule} from "./dashboard-routing.modute";
     CommonModule,
     DashboardRoutingModule
   ],
-  declarations: [DashboardComponent,
-    StatementsComponent]
+  declarations: [
+    DashboardComponent,
+    StatementsComponent
+  ]
 })
 export class DashboardModule {
 }

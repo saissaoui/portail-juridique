@@ -1,6 +1,8 @@
 package fr.artefrance.daj.domain.statement;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.artefrance.daj.domain.View;
 import fr.artefrance.daj.domain.rightholder.RightHolder;
 import fr.artefrance.daj.domain.rightholder.RightHolderRole;
 import fr.artefrance.daj.domain.rightholder.RightHolderType;
@@ -16,9 +18,11 @@ import java.util.Objects;
 public class StatementRightHolder extends RightHolder {
 
     @Column(name = "partner_id")
+    @JsonView(View.Details.class)
     private Long partnerId;
 
     @Column(name = "statement_id")
+    @JsonView(View.Details.class)
     private Long statementId;
 
     public StatementRightHolder() {

@@ -1,5 +1,7 @@
 package fr.artefrance.daj.domain.rightholder;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.artefrance.daj.domain.View;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -20,14 +22,18 @@ public abstract class RightHolder {
     @Column(name = "right_holder_id")
     @SequenceGenerator( name = "dajIdSequ", sequenceName = "DAJ_ID_SEQU", allocationSize = 1 )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dajIdSequ")
+    @JsonView(View.Details.class)
     private Long id;
 
     @Column
+    @JsonView(View.Details.class)
     private String firstname;
 
     @Column
+    @JsonView(View.Details.class)
     private String lastname;
 
+    @JsonView(View.AdvancedDetails.class)
     @ManyToMany
     @JoinTable(name = "right_holder_holder_role", joinColumns = {@JoinColumn(name = "right_holder_id")}, inverseJoinColumns = {@JoinColumn(name = "role_code")})
     private List<RightHolderRole> roles;

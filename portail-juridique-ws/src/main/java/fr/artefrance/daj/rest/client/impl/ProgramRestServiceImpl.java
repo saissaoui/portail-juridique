@@ -1,6 +1,5 @@
 package fr.artefrance.daj.rest.client.impl;
 
-import fr.artefrance.daj.domain.security.User;
 import fr.artefrance.daj.domain.statement.Program;
 import fr.artefrance.daj.rest.client.ProgramRestService;
 import org.glassfish.jersey.client.JerseyClient;

@@ -77,6 +77,7 @@ public class StatementServiceImplTest {
         Set<StatementRightHolder> rightHolders = new LinkedHashSet<>(statement.getRightHolders());
         assertThat(rightHolders).isNotEmpty();
         assertThat(rightHolders.iterator().next()).isNotNull();
+        assertThat(rightHolders.iterator().next().getId()).isNotNull();
 
     }
 

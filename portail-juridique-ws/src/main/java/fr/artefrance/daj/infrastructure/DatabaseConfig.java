@@ -14,21 +14,10 @@ import java.sql.SQLException;
 @ConfigurationProperties("oracle")
 public class DatabaseConfig {
 
-    @Value("spring.datasource.url")
-    private String DATASOURCE_URL;
-
-
-    @Value("spring.datasource.username")
-    private String DATASOURCE_USERNAME;
-
-
-    @Value("spring.datasource.password")
-    private String DATASOURCE_PASSWORD;
 
     private String username;
     private String password;
     private String url;
-
 
     public String getUsername() {
         return username;

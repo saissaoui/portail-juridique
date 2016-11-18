@@ -4,23 +4,26 @@ import "rxjs/add/operator/toPromise";
 import {Statement} from "./statement.model";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import {WsClient} from "./ws-client";
 
 @Injectable()
 export class StatementService {
-  private statementsUrl = environment.restUrlBase+"statements";
-  private statementDetailsUrl = environment.restUrlBase+"statements/";
 
-  constructor(private http: Http) {
+  private listUriTemplate = "statements";
+  private detailUriTemplate = "statements/{id}";
+
+
+  constructor( private wsClient: WsClient) {
   }
 
   getStatements(): Observable<Statement[]> {
-    return this.http.get(this.statementsUrl)
+    return this.wsClient.get(this.listUriTemplate, {})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getStatement(id: number): Observable<Statement> {
-    return this.http.get(this.statementDetailsUrl + id)
+    return this.wsClient.get(this.detailUriTemplate , {id: id})
       .map(this.extractData)
       .catch(this.handleError);
   }

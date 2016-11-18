@@ -3,11 +3,18 @@
     <h1>RELEVE DE DROITS D'AUTEURS: {{statement.id}}</h1>
     <button>Valider le relevé</button>
     <button>Enregistrer</button>
-    <button [routerLink]="['/dashboard']" routerLinkActive="active">Annuler</button>
+    <button (click)="goBack()" >Annuler</button>
   </header>
   <section>
     <label>Statut du relevé:</label> {{statement.status}}
     <label>Dernière activité:</label> {{statement.lastActivityDate}}
+  </section>
+  <section>
+    <button [routerLink]="['right_holder/new']" routerLinkActive="active">Ajouter un ayant droit</button><br>
+    <div *ngFor="let rightholder of statement.rightHolders">
+      {{rightholder.firstname}} {{rightholder.lastname}}
+
+    </div>
   </section>
 </div>
 <div *ngIf="errorMessage">

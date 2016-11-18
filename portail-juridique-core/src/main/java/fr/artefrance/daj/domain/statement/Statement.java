@@ -1,5 +1,7 @@
 package fr.artefrance.daj.domain.statement;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.artefrance.daj.domain.View;
 import fr.artefrance.daj.domain.statement.artwork.Artwork;
 
 import javax.persistence.*;
@@ -18,36 +20,44 @@ public class Statement {
     @Column(name = "statement_id")
     @SequenceGenerator( name = "dajIdSequ", sequenceName = "DAJ_ID_SEQU", allocationSize = 1 )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dajIdSequ")
+    @JsonView(View.Summary.class)
     private Long id;
 
     @Column
     @Enumerated(EnumType.STRING)
     @NotNull
+    @JsonView(View.Summary.class)
     private StatementStatus status;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "program_id")
     @NotNull
+    @JsonView(View.Summary.class)
     private Program program;
 
     @Column(name = "last_activity_date")
     @Temporal(TemporalType.DATE)
     @NotNull
+    @JsonView(View.Summary.class)
     private Date lastActivityDate;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="statement_id")
+    @JsonView(View.Details.class)
     private Set<StatementRightHolder> rightHolders;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="statement_id")
+    @JsonView(View.Details.class)
     private Set<Artwork> artworks;
 
     @Column(name = "has_no_artworks")
+    @JsonView(View.Details.class)
     private Boolean hasNoArtworks;
 
     @Column(name = "producer_owner_id")
     @NotNull
+    @JsonView(View.Details.class)
     private Long producerOwnerId;
 
     public Long getId() {

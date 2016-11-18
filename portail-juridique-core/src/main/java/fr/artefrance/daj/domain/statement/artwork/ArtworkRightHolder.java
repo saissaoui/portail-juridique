@@ -1,5 +1,7 @@
 package fr.artefrance.daj.domain.statement.artwork;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.artefrance.daj.domain.View;
 import fr.artefrance.daj.domain.rightholder.RightHolder;
 import fr.artefrance.daj.domain.rightholder.RightHolderRole;
 import fr.artefrance.daj.domain.rightholder.RightHolderType;
@@ -21,6 +23,7 @@ import static fr.artefrance.daj.domain.rightholder.RightHolderType.*;
 public class ArtworkRightHolder extends RightHolder {
 
     @Column(name = "artwork_id")
+    @JsonView(View.Details.class)
     private Long artworkId;
 
     public ArtworkRightHolder(String firstname, String lastname, List<RightHolderRole> roles) {

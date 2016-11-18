@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Location} from "@angular/common";
-import {Statement} from "../statement.model";
-import {StatementService} from "../statement.service";
+import {StatementService} from "../shared/statement.service";
+import {Statement} from "../shared/statement.model";
 
 @Component({
   selector: 'statement-details',
@@ -13,7 +13,7 @@ export class StatementDetailsComponent implements OnInit {
   statement: Statement;
   errorMessage: string;
 
-  constructor(private statementService: StatementService, private route: ActivatedRoute,
+  constructor(private statementService: StatementService, private route: ActivatedRoute,private router: Router,
               private location: Location) {
   }
 
@@ -30,7 +30,8 @@ export class StatementDetailsComponent implements OnInit {
     });
   }
 
-  goBack(): void {
-    this.location.back();
+  goBack()
+  {
+    this.router.navigate(["/dashboard"]);
   }
 }
